@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTTPとHTTPSの違いを、実際のエラーから理解する — NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
+<meta name="description" content="情報系学生がインフラエンジニアを目指し、VPS契約からSSH・Nginx・DNS構築まで独学で挑戦する記録。つまずいたエラーと解決法をそのまま公開しています。">
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XGFPRTEELF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XGFPRTEELF');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4114224902653206"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">root@noluckblog:~$</a>
+    <nav class="nav">
+      
+      <a href="/categories/guide/">技術解説</a>
+      
+      <a href="/categories/troubleshooting/">トラブル対応</a>
+      
+      <a href="/categories/beginners/">初心者向け</a>
+      
+      <a href="/categories/diary/">振り返り</a>
+      
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap">
+
+
+<article class="post">
+  <p class="eyebrow">posts</p>
+  <h1 class="post-title">HTTPとHTTPSの違いを、実際のエラーから理解する</h1>
+  <time class="mono post-date" datetime="2026-09-06">2026.09.06</time>
+  <div class="post-body">
+    <p>「HTTPSの方が安全」ということは知識として知っていましたが、実際に「httpsで接続できません」というエラーに直面したことで、初めて仕組みとして理解できたので整理します。</p>
+<h2 id="httpとhttpsの基本的な違い">HTTPとHTTPSの基本的な違い</h2>
+<table>
+	<thead>
+			<tr>
+					<th></th>
+					<th>HTTP</th>
+					<th>HTTPS</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>意味</td>
+					<td>通信内容がそのまま(平文)でやり取りされる</td>
+					<td>通信内容が暗号化される</td>
+			</tr>
+			<tr>
+					<td>ポート番号</td>
+					<td>80</td>
+					<td>443</td>
+			</tr>
+			<tr>
+					<td>見分け方</td>
+					<td>鍵マークなし、「保護されていない通信」の警告</td>
+					<td>鍵マーク表示</td>
+			</tr>
+			<tr>
+					<td>必要なもの</td>
+					<td>特になし</td>
+					<td>SSL証明書</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="なぜ暗号化が必要なのか">なぜ暗号化が必要なのか</h2>
+<p>HTTP(暗号化なし)では、通信内容が第三者に読み取られたり、途中で改ざんされたりするリスクがあります。例えば、公共のWi-Fiでログイン情報を送信する際に、HTTPのままだと第三者に盗み見られる可能性がある、という説明はよく見かけますが、実感として理解できていたわけではありませんでした。</p>
+<h2 id="実際に直面したエラー">実際に直面したエラー</h2>
+<p>サイトマップをSearch Consoleに登録しようとした際、<code>hugo.toml</code>の<code>baseURL</code>が</p>
+<pre tabindex="0"><code>baseURL = &#34;https://noluckblog.com/&#34;
+</code></pre><p>となっていました。しかし、このとき<strong>サーバー自体はまだHTTPでしか公開しておらず、SSL証明書を導入していませんでした。</strong> ブラウザで直接</p>
+<pre tabindex="0"><code>https://noluckblog.com
+</code></pre><p>にアクセスすると、</p>
+<pre tabindex="0"><code>接続できません
+</code></pre><p>という、はっきりしたエラーになりました。この体験で、「HTTPSは、<code>https://</code>と書けば自動的に使えるものではなく、<strong>サーバー側にSSL証明書を用意して初めて使える機能</strong>」ということが、実感として腑に落ちました。</p>
+<h2 id="ssl証明書とは何なのか">SSL証明書とは何なのか</h2>
+<p>証明書は、簡単に言うと**「このドメインの持ち主が発行を許可した、暗号化通信のための鍵」**です。これが無いと、ブラウザは暗号化通信を開始できません。</p>
+<p>今回は<strong>Let&rsquo;s Encrypt</strong>という無料の認証局から証明書を発行してもらいました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo certbot --nginx -d noluckblog.com -d www.noluckblog.com
+</span></span></code></pre></div><p>このコマンド1つで、証明書の取得と、Nginxの設定(<code>listen 443 ssl;</code>の追加など)まで自動で行われました。</p>
+<h2 id="証明書取得後に変わったこと">証明書取得後に変わったこと</h2>
+<ul>
+<li><code>https://noluckblog.com</code>で鍵マーク付きにアクセスできるようになった</li>
+<li><code>http://</code>でアクセスしても、自動的に<code>https://</code>にリダイレクトされるようになった(Certbotが設定してくれた)</li>
+<li>Search Consoleのサイトマップも、正常に取得できるようになった</li>
+</ul>
+<h2 id="学び">学び</h2>
+<p>「HTTPSにする」という作業は、単に設定ファイルの記述を変えるだけでは完結せず、<strong>証明書という実体を用意して、初めて成立する仕組み</strong>だと理解できました。<code>baseURL</code>の記述と、サーバーの実際の状態が食い違っていたために起きたエラーでしたが、逆にこのエラーのおかげで、普段何気なく見ている鍵マークの裏側を、初めてきちんと理解する機会になりました。</p>
+
+  </div>
+</article>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>このサイトは自作VPS上のNginx &#43; Hugoで動いています。</p>
+    <p class="footer-links">
+      <a href="/about/">このサイトについて</a>
+      <a href="/privacy-policy/">プライバシーポリシー</a>
+      <a href="/contact/">お問い合わせ</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

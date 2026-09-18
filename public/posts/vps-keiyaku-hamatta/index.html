@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>初めてのVPS契約でつまずいたこと(プラン選び・OS選び・まとめトクの罠) — NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
+<meta name="description" content="情報系学生がインフラエンジニアを目指し、VPS契約からSSH・Nginx・DNS構築まで独学で挑戦する記録。つまずいたエラーと解決法をそのまま公開しています。">
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XGFPRTEELF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XGFPRTEELF');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4114224902653206"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">root@noluckblog:~$</a>
+    <nav class="nav">
+      
+      <a href="/categories/guide/">技術解説</a>
+      
+      <a href="/categories/troubleshooting/">トラブル対応</a>
+      
+      <a href="/categories/beginners/">初心者向け</a>
+      
+      <a href="/categories/diary/">振り返り</a>
+      
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap">
+
+
+<article class="post">
+  <p class="eyebrow">posts</p>
+  <h1 class="post-title">初めてのVPS契約でつまずいたこと(プラン選び・OS選び・まとめトクの罠)</h1>
+  <time class="mono post-date" datetime="2026-08-27">2026.08.27</time>
+  <div class="post-body">
+    <p>Hugoでブログの中身ができたところで、いよいよ実際にVPSを契約しました。技術的な設定以前に、「契約画面で何を選べばいいか分からない」というところで早速つまずいたので、判断に迷ったポイントをまとめておきます。</p>
+<h2 id="サービス選びconoha-vpsにした理由">サービス選び:ConoHa VPSにした理由</h2>
+<p>VPSの提供会社はいくつもありますが、初めての契約には<strong>ConoHa VPS</strong>を選びました。</p>
+<ul>
+<li>国内サービスで管理画面が日本語、サポートも日本語</li>
+<li>個人ブログ運営者の情報が多く、詰まったときに検索で情報が出やすい</li>
+<li>最安クラスのプランが手頃な価格から始められる</li>
+</ul>
+<h2 id="プラン選びメモリ512mbか1gbか">プラン選び:メモリ512MBか1GBか</h2>
+<p>契約画面でまず迷ったのがサーバースペックでした。</p>
+<table>
+	<thead>
+			<tr>
+					<th>プラン</th>
+					<th>月額(時間課金上限)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>512MB</td>
+					<td>750円</td>
+			</tr>
+			<tr>
+					<td>1GB</td>
+					<td>1,064円</td>
+			</tr>
+	</tbody>
+</table>
+<p>今回作るのはHugoで生成した<strong>静的サイト</strong>(データベース不要)なので、正直512MBでも十分すぎるスペックです。ただ、OS(後述)によっては512MBプランが選べない組み合わせがあり、結果的に1GBプランを選びました。差額は月300円程度なので、無理に最安にこだわらず、扱いやすさを優先した形です。</p>
+<h2 id="os選びubuntuにした理由">OS選び:Ubuntuにした理由</h2>
+<p>イメージタイプ(OS)は多数の選択肢がありましたが、<strong>Ubuntu 24.04 LTS</strong>を選びました。</p>
+<ul>
+<li>情報量が圧倒的に多く、エラーが出てもほぼ必ず解決策が見つかる</li>
+<li>インフラ実務でも採用率が高く、学習の実用性が高い</li>
+<li>LTS(長期サポート版)なので、セキュリティアップデートが長く提供される</li>
+</ul>
+<p>他のOS(Debian、Rocky Linuxなど)でも動作原理は近いですが、コマンドや設定ファイルの細かい違いでつまずいたとき、それが「Linux自体の理解不足」なのか「そのOS特有の癖」なのか切り分けにくくなるため、情報が多いUbuntuを選びました。</p>
+<h2 id="一番の落とし穴まとめトクで契約してしまった話">一番の落とし穴:「まとめトク」で契約してしまった話</h2>
+<p>これが一番の反省点です。プラン選択画面には「時間課金」の他に、「1ヶ月」「3ヶ月」……「36ヶ月」というまとめ払いの選択肢があり、<strong>「まとめトク」を選ぶと単価が安くなる</strong>ように見えました。</p>
+<p>学習目的でまず試してみる段階だったにも関わらず、勢いで**36ヶ月契約(16,179円の一括払い)**を選んでしまいました。結果的に大きなトラブルにはなりませんでしたが、冷静に考えると:</p>
+<ul>
+<li>学習し始めの段階では「使ってみたけど自分には合わなかった」という可能性も十分あった</li>
+<li>その場合、まとめ払いした分は基本的に返ってこない</li>
+<li>時間課金であれば、使った分だけの請求で、いつでもやめられる</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>教訓</strong>:特に初めて触るサービスは、多少割高でも「時間課金」からスタートするべきだった。慣れて継続利用が確実になってから、まとめ払いに切り替える方が安全。</p>
+</blockquote>
+<h2 id="オプション設定で悩んだ項目">オプション設定で悩んだ項目</h2>
+<p>契約画面の下の方には、いくつかのオプションがありました。今回は以下のように判断しました。</p>
+<table>
+	<thead>
+			<tr>
+					<th>オプション</th>
+					<th>選んだ設定</th>
+					<th>理由</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>自動バックアップ</td>
+					<td>無効</td>
+					<td>追加料金がかかる。学習段階では不要と判断</td>
+			</tr>
+			<tr>
+					<td>追加ストレージ</td>
+					<td>使用しない</td>
+					<td>静的サイトなので100GBのSSDで十分すぎる</td>
+			</tr>
+			<tr>
+					<td>SSH Key</td>
+					<td>使用しない</td>
+					<td>契約時点では鍵を作っておらず、後から自分で公開鍵認証に切り替える方針にしたため</td>
+			</tr>
+			<tr>
+					<td>スタートアップスクリプト</td>
+					<td>使用しない</td>
+					<td>自動設定に頼らず、Ubuntuまっさらな状態から自分の手で構築したかった</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="rootパスワードの取り扱い">rootパスワードの取り扱い</h2>
+<p>契約画面でrootパスワード(サーバーの管理者パスワード)の設定を求められます。これは今後SSH接続で使う、非常に重要な情報です。</p>
+<ul>
+<li>9〜70文字、半角英数記号の組み合わせという指定に従って設定</li>
+<li><strong>このパスワードは絶対に他人に見せない、記事やスクリーンショットにも映さない</strong>(今後SSH接続する上で、サーバーの管理者権限そのものに直結するため)</li>
+</ul>
+<h2 id="つまずきポイントのまとめ">つまずきポイントのまとめ</h2>
+<table>
+	<thead>
+			<tr>
+					<th>つまずいたこと</th>
+					<th>原因</th>
+					<th>学んだこと</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>プラン選択で512MBが選べなかった</td>
+					<td>OSとの組み合わせ制限</td>
+					<td>スペックだけでなくOSとの組み合わせも確認する</td>
+			</tr>
+			<tr>
+					<td>「まとめトク」で36ヶ月契約してしまった</td>
+					<td>割引表示に釣られた</td>
+					<td>初めて使うサービスは時間課金から試すべき</td>
+			</tr>
+			<tr>
+					<td>オプションの要否判断に時間がかかった</td>
+					<td>各項目の意味が分からなかった</td>
+					<td>迷ったら「今すぐ必要か」で判断し、不要なものは後からでも追加できる</td>
+			</tr>
+	</tbody>
+</table>
+<p>契約自体は数分で終わる作業ですが、「何を選べば失敗しないか」を考えながら進めると、想像以上に時間がかかりました。次はいよいよSSH接続に進みますが、ここでもさらに大きなトラブルにハマることになります。</p>
+
+  </div>
+</article>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>このサイトは自作VPS上のNginx &#43; Hugoで動いています。</p>
+    <p class="footer-links">
+      <a href="/about/">このサイトについて</a>
+      <a href="/privacy-policy/">プライバシーポリシー</a>
+      <a href="/contact/">お問い合わせ</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

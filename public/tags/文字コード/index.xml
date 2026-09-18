@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>文字コード on NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
+		<link>https://noluckblog.com/tags/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89/</link>
+		<description>Recent content in 文字コード on NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</description>
+		<generator>Hugo</generator>
+		<language>ja</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 06 Sep 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://noluckblog.com/tags/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>文字コード沼:UTF-8・BOM・Shift-JISは何が違うのか</title>
+				<link>https://noluckblog.com/posts/character-encoding-numa/</link>
+				<pubDate>Sun, 06 Sep 2026 00:00:00 +0000</pubDate>
+				<guid>https://noluckblog.com/posts/character-encoding-numa/</guid>
+				<description>&lt;p&gt;&lt;code&gt;hugo.toml&lt;/code&gt;の文字化け事件をきっかけに、「文字コード」というものをちゃんと理解しないまま今まで来ていたことに気づいたので、改めて整理してみます。&lt;/p&gt;&#xA;&lt;h2 id=&#34;そもそも文字コードとは&#34;&gt;そもそも文字コードとは&lt;/h2&gt;&#xA;&lt;p&gt;コンピュータは文字を直接理解できず、&lt;strong&gt;すべての文字を数字に変換して扱っています。&lt;/strong&gt; 「あ」という文字を、どの数字に対応させるかというルール(対応表)が「文字コード」です。この対応表が送り手と受け手でズレると、文字化けが起きます。&lt;/p&gt;&#xA;&lt;h2 id=&#34;主な文字コードの違い&#34;&gt;主な文字コードの違い&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;文字コード&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;特徴&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&lt;strong&gt;Shift-JIS&lt;/strong&gt;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;古くからある日本語Windows標準。1バイトまたは2バイトで1文字を表す&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&lt;strong&gt;UTF-8&lt;/strong&gt;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;世界中の文字を1つの体系で扱える、現在の標準。可変長(1〜4バイト)で表現&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&lt;strong&gt;UTF-8 (BOM付き)&lt;/strong&gt;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;UTF-8の先頭に、「これはUTF-8です」という目印(BOM)を付けたもの&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;今回起きたことの正体&#34;&gt;今回起きたことの正体&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1段階目shift-jisとutf-8の混同&#34;&gt;1段階目:Shift-JISとUTF-8の混同&lt;/h3&gt;&#xA;&lt;p&gt;メモ帳で保存する際、元のファイル(UTF-8)とは違う文字コード(Shift-JISに近いもの)で保存されてしまい、日本語の部分が化けました。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;description = &amp;#34;螟ｧ蟄ｦ縺ｧHTML/CSS...&amp;#34;&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;これは「UTF-8のバイト列を、Shift-JISのルールで無理やり読んでしまった」ときに出る、典型的な化け方です。&lt;/p&gt;&#xA;&lt;h3 id=&#34;2段階目bom付きutf-8とhugoの相性&#34;&gt;2段階目:BOM付きUTF-8とHugoの相性&lt;/h3&gt;&#xA;&lt;p&gt;文字コードをUTF-8に合わせ直した後も、今度は別のエラーが出ました。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;unmarshal failed: toml: invalid character at start of key: U+00EF &amp;#39;ï&amp;#39;&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;これは、メモ帳が保存する「UTF-8」が、実際には&lt;strong&gt;先頭にBOMという目印付き&lt;/strong&gt;だったことが原因でした。BOM自体は正当な仕組みですが、&lt;strong&gt;TOML形式(&lt;code&gt;hugo.toml&lt;/code&gt;が使っている設定ファイルの書式)の仕様上、このBOMを不正な文字として扱ってしまう&lt;/strong&gt;という、相性の問題でした。&lt;/p&gt;&#xA;&lt;h2 id=&#34;なぜtypeコマンドでは化けて見えたのか&#34;&gt;なぜ&lt;code&gt;type&lt;/code&gt;コマンドでは化けて見えたのか&lt;/h2&gt;&#xA;&lt;p&gt;さらにややこしかったのが、PowerShellの&lt;code&gt;type&lt;/code&gt;コマンドが、&lt;strong&gt;正しく保存されたUTF-8ファイルであっても、古い文字コード前提で表示しようとする癖がある&lt;/strong&gt;ことでした。&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;type hugo.toml        &lt;span style=&#34;color:#75715e&#34;&gt;# 化けて見える&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Get-Content hugo.toml -Encoding UTF8   &lt;span style=&#34;color:#75715e&#34;&gt;# 正しく見える&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;同じファイルなのに、&lt;strong&gt;見るためのコマンドによって結果が変わる&lt;/strong&gt;、というのは最初かなり混乱しました。&lt;/p&gt;&#xA;&lt;h2 id=&#34;得られた教訓&#34;&gt;得られた教訓&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;文字化けを見たとき、「ファイルが壊れている」のか「見る側のコマンドが対応していないだけ」なのかを区別する&lt;/li&gt;&#xA;&lt;li&gt;日本語を含む設定ファイルは、GUIのメモ帳よりも、&lt;strong&gt;文字コードを明示的に指定できるコマンド(PowerShellなど)で編集する方が事故が少ない&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;「UTF-8」と一言で言っても、&lt;strong&gt;BOMの有無で挙動が変わる場合がある&lt;/strong&gt;ということを知っておく&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;普段何気なく保存している文字が、裏側でこんなに複雑なルールに支えられていると実感した出来事でした。&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,10 @@
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="{{ "/" | relURL }}" class="logo">root@{{ .Site.Params.slug | default "yourlog" }}:~$</a>
+    <nav class="nav">
+      {{ range .Site.Menus.main }}
+      <a href="{{ .URL | relURL }}">{{ .Name }}</a>
+      {{ end }}
+    </nav>
+  </div>
+</header>

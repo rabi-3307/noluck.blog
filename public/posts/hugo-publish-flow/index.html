@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>記事を書いてから公開するまでの手順(PowerShellでの操作の流れ) — NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
+<meta name="description" content="情報系学生がインフラエンジニアを目指し、VPS契約からSSH・Nginx・DNS構築まで独学で挑戦する記録。つまずいたエラーと解決法をそのまま公開しています。">
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XGFPRTEELF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XGFPRTEELF');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4114224902653206"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">root@noluckblog:~$</a>
+    <nav class="nav">
+      
+      <a href="/categories/guide/">技術解説</a>
+      
+      <a href="/categories/troubleshooting/">トラブル対応</a>
+      
+      <a href="/categories/beginners/">初心者向け</a>
+      
+      <a href="/categories/diary/">振り返り</a>
+      
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap">
+
+
+<article class="post">
+  <p class="eyebrow">posts</p>
+  <h1 class="post-title">記事を書いてから公開するまでの手順(PowerShellでの操作の流れ)</h1>
+  <time class="mono post-date" datetime="2026-09-05">2026.09.05</time>
+  <div class="post-body">
+    <p>記事を書くたびに「あれ、この後何のコマンドを打つんだっけ」となることが多かったので、書き始めてから実際に公開されるまでの一連の流れを、手順としてまとめておきます。特に<strong>転送のたびに毎回再発した403エラー</strong>は、何度もハマったのでしっかり書き残しておきます。</p>
+<h2 id="全体の流れ">全体の流れ</h2>
+<pre tabindex="0"><code>1. 記事を書く(ローカルのcontent/posts/)
+2. プレビューで確認する(hugo server)
+3. 本番用にビルドする(hugo)
+4. サーバーに転送する(scp)
+5. 権限を直す(chmod)  ← 実は毎回必須だった
+6. Nginxを再起動する
+</code></pre><p>当初は「5番は初回だけ直せば済むはず」と思っていたのですが、実際には<strong>転送のたびに再発する</strong>ことが分かったので、今は「毎回必ずやる手順」として組み込んでいます。1つずつ見ていきます。</p>
+<h2 id="ステップ1記事を書く">ステップ1:記事を書く</h2>
+<p>PowerShellで、プロジェクトのフォルダに移動します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd <span style="color:#e6db74">&#34;C:\Users\user\...\yourlog-site&#34;</span>
+</span></span></code></pre></div><p>新しい記事ファイルを作成します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>hugo new posts/kiji-no-namae.md
+</span></span></code></pre></div><p>生成された<code>content/posts/kiji-no-namae.md</code>をVSCodeなどで開き、本文を書いていきます。</p>
+<h2 id="ステップ2プレビューで確認する">ステップ2:プレビューで確認する</h2>
+<p>書きながら、随時見た目を確認します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>hugo server
+</span></span></code></pre></div><pre tabindex="0"><code>Web Server is available at http://localhost:1313/
+</code></pre><p>ブラウザで<code>http://localhost:1313</code>を開いて確認します。保存するたびに自動で反映されるので、書いては確認、を繰り返します。</p>
+<p>確認が終わったら、ターミナルに戻って停止します。</p>
+<pre tabindex="0"><code>Ctrl + C
+</code></pre><h2 id="ステップ3本番用にビルドする">ステップ3:本番用にビルドする</h2>
+<p>記事が書き終わったら、公開用のファイル一式を生成します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>hugo
+</span></span></code></pre></div><p>これで<code>public</code>フォルダの中身が最新の状態に更新されます。</p>
+<h2 id="ステップ4サーバーに転送する">ステップ4:サーバーに転送する</h2>
+<p><code>scp</code>コマンドで、VPS上の公開フォルダに転送します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>scp -r public\* root@(サーバーのIPアドレス)<span style="color:#960050;background-color:#1e0010">:</span>/var/www/yourlog/public/
+</span></span></code></pre></div><p>パスワードを聞かれず転送が始まれば、公開鍵認証が正しく機能している証拠です。</p>
+<h2 id="ステップ5権限を直すここが今回一番の学び">ステップ5:権限を直す(ここが今回一番の学び)</h2>
+<p>転送直後、ブラウザで確認すると**「403 Forbidden」**と表示されることが、これまで複数回発生しました。最初は「初回だけの一時的な不具合」だと思っていたのですが、<strong>記事を追加して<code>scp</code>で再転送するたびに、同じ症状が繰り返し起きる</strong>ことが分かりました。</p>
+<p>原因は毎回同じで、<code>scp</code>で転送されたファイル・フォルダの権限が、Webサーバー(Nginx)から読み取れない状態にリセットされてしまうためです。</p>
+<p>SSHで接続します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>ssh root@(サーバーのIPアドレス)
+</span></span></code></pre></div><p>権限を直します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chmod -R <span style="color:#ae81ff">755</span> /var/www/yourlog
+</span></span><span style="display:flex;"><span>sudo chmod <span style="color:#ae81ff">755</span> /var/www
+</span></span></code></pre></div><h2 id="ステップ6nginxを再起動する">ステップ6:Nginxを再起動する</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart nginx
+</span></span></code></pre></div><h2 id="確認">確認</h2>
+<p>すべて終わったら、実際の公開URLで最終確認します。</p>
+<pre tabindex="0"><code>https://(あなたのドメイン)
+</code></pre><p><code>Ctrl + Shift + R</code>(強制リロード)も忘れずに試すと確実です。特にCSSファイル単体で確認すると分かりやすいです。</p>
+<pre tabindex="0"><code>https://(あなたのドメイン)/css/style.css
+</code></pre><p>ここが<strong>403 Forbidden</strong>になっていたら、権限の問題がまだ残っている合図です。CSSの中身(コード)がそのまま表示されれば、正しく直っています。</p>
+<h2 id="つまずいたポイント">つまずいたポイント</h2>
+<table>
+	<thead>
+			<tr>
+					<th>つまずいたこと</th>
+					<th>原因</th>
+					<th>学んだこと</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>hugo server</code>で確認した後、公開してもサイトが変わらない</td>
+					<td><code>hugo server</code>は本番用のファイルを更新するコマンドではなかった</td>
+					<td>公開前は必ず<code>hugo</code>(サーバー無し)を実行する習慣をつける</td>
+			</tr>
+			<tr>
+					<td><code>scp</code>転送のたびに403エラーが再発する</td>
+					<td><code>scp</code>は転送するたびにファイルの権限をリセットしてしまう</td>
+					<td>「初回だけ直せばいい」ものではなく、<strong>転送のたびに必ず<code>chmod</code>する</strong>、と手順そのものに組み込む</td>
+			</tr>
+			<tr>
+					<td>毎回<code>cd</code>を打つのを忘れる</td>
+					<td>ターミナルはPowerShellを開き直すたびに現在地がリセットされる</td>
+					<td>フォルダをエクスプローラーで開いてからターミナルを起動すると手間が減る</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="今の型として定着させた手順">今の「型」として定着させた手順</h2>
+<p>結局、記事を更新するたびに以下をワンセットで実行する、というのが今の運用の型になりました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># 1. ビルド</span>
+</span></span><span style="display:flex;"><span>hugo
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 転送</span>
+</span></span><span style="display:flex;"><span>scp -r public\* root@(IPアドレス)<span style="color:#960050;background-color:#1e0010">:</span>/var/www/yourlog/public/
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 3. SSHで権限修正 + 再起動(毎回セットで)</span>
+</span></span><span style="display:flex;"><span>sudo chmod -R <span style="color:#ae81ff">755</span> /var/www/yourlog
+</span></span><span style="display:flex;"><span>sudo systemctl restart nginx
+</span></span></code></pre></div><p>「書く→確認→ビルド→転送→権限修正→再起動」の6ステップを毎回同じ順番で繰り返す、と割り切ってしまえば、実はそこまで複雑な作業ではありませんでした。むしろ、この権限の再発パターンに気づけたこと自体が、地味ながら実用的な学びだったと思います。</p>
+
+  </div>
+</article>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>このサイトは自作VPS上のNginx &#43; Hugoで動いています。</p>
+    <p class="footer-links">
+      <a href="/about/">このサイトについて</a>
+      <a href="/privacy-policy/">プライバシーポリシー</a>
+      <a href="/contact/">お問い合わせ</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

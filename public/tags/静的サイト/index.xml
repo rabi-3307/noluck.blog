@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>静的サイト on NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
+		<link>https://noluckblog.com/tags/%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88/</link>
+		<description>Recent content in 静的サイト on NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</description>
+		<generator>Hugo</generator>
+		<language>ja</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 06 Sep 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://noluckblog.com/tags/%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>静的サイトとWordPress、運用してみて分かった違い</title>
+				<link>https://noluckblog.com/posts/static-vs-wordpress-unyou/</link>
+				<pubDate>Sun, 06 Sep 2026 00:00:00 +0000</pubDate>
+				<guid>https://noluckblog.com/posts/static-vs-wordpress-unyou/</guid>
+				<description>&lt;p&gt;構築を始める前、WordPressと静的サイト(Hugo)を比較する記事を書きましたが、あくまで「調べた内容」でした。実際に数週間運用してみて、当時の予想と実感が一致した部分・違った部分があったので振り返ります。&lt;/p&gt;&#xA;&lt;h2 id=&#34;事前に予想していたこと&#34;&gt;事前に予想していたこと&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;項目&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;事前の予想&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;セキュリティ&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;静的サイトの方が攻撃対象面が小さく安全&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;速度&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;静的サイトの方がDBを介さない分、表示が速い&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;更新の手間&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;WordPressの方が管理画面から直接編集できて楽&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;実際に運用してみて&#34;&gt;実際に運用してみて&lt;/h2&gt;&#xA;&lt;h3 id=&#34;セキュリティ面は予想通り負担がかなり軽かった&#34;&gt;セキュリティ面は予想通り、負担がかなり軽かった&lt;/h3&gt;&#xA;&lt;p&gt;WordPressであれば必要になる、プラグインの脆弱性対応や、ログイン画面への攻撃対策といった作業が一切不要でした。実際に発生したトラブルは、&lt;code&gt;baseURL&lt;/code&gt;の設定ミスや文字コード、ファイル権限といった&lt;strong&gt;自分の操作ミスによるもの&lt;/strong&gt;がほとんどで、外部からの攻撃を意識する場面はほぼありませんでした。これは想定通りの利点でした。&lt;/p&gt;&#xA;&lt;h3 id=&#34;更新の手間は思ったより平坦ではなかった&#34;&gt;更新の手間は「思ったより平坦ではなかった」&lt;/h3&gt;&#xA;&lt;p&gt;事前の想定では「WordPressの方が楽」という程度の認識でしたが、実際にはHugoでの更新作業自体は&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;記事を書く → hugo → scp → chmod → 確認&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;という決まった手順さえ覚えてしまえば、数分で完結する作業でした。ただし、&lt;strong&gt;この「手順を覚えるまで」のコストは、事前の想定より高かった&lt;/strong&gt;というのが実感です。WordPressであれば管理画面からボタン操作で完結する作業が、静的サイトでは複数のコマンドの意味を理解して初めて安定して行えるようになる、という違いがありました。&lt;/p&gt;&#xA;&lt;h3 id=&#34;想定していなかった手間デプロイのたびの権限トラブル&#34;&gt;想定していなかった手間:デプロイのたびの権限トラブル&lt;/h3&gt;&#xA;&lt;p&gt;これは事前に全く想定していなかった点です。ファイルを転送するたびに権限が引っかかる、という現象は、WordPressであれば意識する必要のない領域でした。静的サイトだからこそ意識することになった、良くも悪くも「学びの多い」ポイントでした。&lt;/p&gt;&#xA;&lt;h2 id=&#34;総合的な感想&#34;&gt;総合的な感想&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;観点&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;感想&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;セキュリティ・軽さ&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;静的サイトの利点をそのまま実感できた&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;学習効果&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;想定以上に高かった。DNS、SSH、ファイル権限まで一通り触れることになった&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;導入のハードル&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;事前の想定より高かった。ただしこれは「学習目的」であれば長所でもある&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;純粋な運用の楽さ&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;WordPressの方が上、という事前の想定は変わらず&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;「収益を早く出したい・とにかく楽に更新したい」という目的であれば、今でもWordPressの方が適していると思います。ただ、今回のように「インフラを学びながら発信する」という目的であれば、事前に想定していた以上に、静的サイト構成は学びの機会を提供してくれたと感じています。&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

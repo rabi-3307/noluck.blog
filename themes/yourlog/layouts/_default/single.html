@@ -1,0 +1,12 @@
+{{ define "main" }}
+
+<article class="post">
+  <p class="eyebrow">{{ .Section }}</p>
+  <h1 class="post-title">{{ .Title }}</h1>
+  <time class="mono post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+  <div class="post-body">
+    {{ .Content }}
+  </div>
+</article>
+
+{{ end }}

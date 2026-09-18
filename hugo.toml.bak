@@ -1,0 +1,42 @@
+﻿baseURL = "https://noluckblog.com/"
+languageCode = "ja"
+title = "root@yourlog"
+theme = "yourlog"
+[params]
+  description = "大学でHTML/CSSを学んだ筆者が、自前のVPSでこのサイト自体を運用しながら構築の記録を残していきます。"
+  slug = "yourlog"
+  eyebrow = "個人開発ログ — インフラを一から学ぶ"
+  heroTitle = "VPSを一から建てて、動かして、壊しながら学ぶ。"
+  heroLead = "大学でHTML/CSSを学んだ筆者が、レンタルサーバーではなく自前のVPSでこのサイト自体を運用しながら、構築の記録を残していきます。"
+  footerText = "このサイトは自作VPS上のNginx + Hugoで動いています。"
+  statusServer = "ConoHa VPS"
+  statusStack = "Nginx / Hugo"
+  statusUptime = "-"
+  [[params.flow]]
+    num = "01"
+    title = "VPS選定"
+    desc = "契約・比較・料金"
+  [[params.flow]]
+    num = "02"
+    title = "初期設定"
+    desc = "SSH・ufw・fail2ban"
+  [[params.flow]]
+    num = "03"
+    title = "Hugo構築"
+    desc = "静的サイト・デプロイ"
+  [[params.flow]]
+    num = "04"
+    title = "運用・監視"
+    desc = "エラー対応・分析"
+[[menus.main]]
+  name = "VPS構築"
+  url = "/categories/vps/"
+  weight = 1
+[[menus.main]]
+  name = "Hugo"
+  url = "/categories/hugo/"
+  weight = 2
+[[menus.main]]
+  name = "トラブル対応"
+  url = "/categories/troubleshooting/"
+  weight = 3

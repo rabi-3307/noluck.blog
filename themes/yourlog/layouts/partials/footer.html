@@ -1,0 +1,10 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <p>{{ .Site.Params.footerText | default "このサイトは自作VPS上のNginx + Hugoで動いています。" }}</p>
+    <p class="footer-links">
+      <a href="{{ "/about/" | relURL }}">このサイトについて</a>
+      <a href="{{ "/privacy-policy/" | relURL }}">プライバシーポリシー</a>
+      <a href="{{ "/contact/" | relURL }}">お問い合わせ</a>
+    </p>
+  </div>
+</footer>

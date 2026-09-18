@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VPSと共用レンタルサーバー、結局何が違うのか — NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
+<meta name="description" content="情報系学生がインフラエンジニアを目指し、VPS契約からSSH・Nginx・DNS構築まで独学で挑戦する記録。つまずいたエラーと解決法をそのまま公開しています。">
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XGFPRTEELF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XGFPRTEELF');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4114224902653206"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">root@noluckblog:~$</a>
+    <nav class="nav">
+      
+      <a href="/categories/guide/">技術解説</a>
+      
+      <a href="/categories/troubleshooting/">トラブル対応</a>
+      
+      <a href="/categories/beginners/">初心者向け</a>
+      
+      <a href="/categories/diary/">振り返り</a>
+      
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap">
+
+
+<article class="post">
+  <p class="eyebrow">posts</p>
+  <h1 class="post-title">VPSと共用レンタルサーバー、結局何が違うのか</h1>
+  <time class="mono post-date" datetime="2026-09-06">2026.09.06</time>
+  <div class="post-body">
+    <p>契約前に調べた際は「root権限があるかないか」という説明で分かった気になっていましたが、実際に運用してみて、その違いの重みを体感したので改めて整理します。</p>
+<h2 id="そもそもの違い契約前の理解">そもそもの違い(契約前の理解)</h2>
+<table>
+	<thead>
+			<tr>
+					<th></th>
+					<th>共用レンタルサーバー</th>
+					<th>VPS</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>権限</td>
+					<td>管理画面上の操作のみ</td>
+					<td>サーバーの管理者権限(root)が丸ごと与えられる</td>
+			</tr>
+			<tr>
+					<td>自由度</td>
+					<td>用意された機能内</td>
+					<td>Nginx、Dockerなど何でも自分でインストール可能</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="実際に運用してみて分かったこと">実際に運用してみて分かったこと</h2>
+<h3 id="1-自由ということは全部自分の責任ということ">1. 「自由」ということは「全部自分の責任」ということ</h3>
+<p>VPSでは、Webサーバーソフト(Nginx)のインストールから、ファイアウォールの設定、SSL証明書の導入まで、<strong>すべて自分の手で行う</strong>必要がありました。共用レンタルサーバーであれば、多くの場合これらは事業者側が用意した管理画面から数クリックで完了します。</p>
+<p>自由度が高い分、<strong>セキュリティグループの設定漏れでSSHが繋がらない、ファイルの権限設定を誤って403エラーになる</strong>、といったトラブルも、すべて自分で切り分けて解決する必要がありました。これは大変である一方、確実に技術力として身についている実感があります。</p>
+<h3 id="2-osレベルのアップデート責任も自分にある">2. OSレベルのアップデート責任も自分にある</h3>
+<pre tabindex="0"><code>*** System restart required ***
+</code></pre><p>このような通知も、共用レンタルサーバーであれば事業者側が対応してくれる部分ですが、VPSでは自分で判断してコマンドを実行する必要があります。放置すればセキュリティリスクになり得るという意識を、常に持つ必要がありました。</p>
+<h3 id="3-障害時の切り分けの幅が広い">3. 障害時の切り分けの幅が広い</h3>
+<p>「繋がらない」という同じ症状でも、原因になり得る箇所が</p>
+<ul>
+<li>サーバー自体の起動状態</li>
+<li>サーバー内部のファイアウォール(ufw)</li>
+<li>クラウド側のファイアウォール(セキュリティグループ)</li>
+<li>DNSの設定</li>
+<li>自分のネットワーク環境</li>
+</ul>
+<p>と、共用レンタルサーバーでは意識する必要のなかった層まで広がります。裏を返せば、<strong>それだけ多くの技術要素に触れる機会がある</strong>、ということでもありました。</p>
+<h2 id="それでもvpsを選んでよかったと思う理由">それでもVPSを選んでよかったと思う理由</h2>
+<ul>
+<li>学習目的であれば、多少壊れても実害が少ないうちに、本番相当の経験を積める</li>
+<li>実務(インフラエンジニア)で求められる知識と、直接重なる部分が多い</li>
+<li>「動かない」の原因を自力で切り分ける訓練そのものが、一番の収穫だった</li>
+</ul>
+<h2 id="まとめ">まとめ</h2>
+<p>契約前は「自由度が高い」というメリットの面ばかり見ていましたが、実際に運用してみると、<strong>その自由度は同時に全責任を負うということでもある</strong>、と実感しました。学習目的であればこのトレードオフは十分に価値があると感じていますが、「とにかく早く安定してサイトを公開したい」という場合は、共用レンタルサーバーやWordPress向けのホスティングサービスの方が適していると思います。</p>
+
+  </div>
+</article>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>このサイトは自作VPS上のNginx &#43; Hugoで動いています。</p>
+    <p class="footer-links">
+      <a href="/about/">このサイトについて</a>
+      <a href="/privacy-policy/">プライバシーポリシー</a>
+      <a href="/contact/">お問い合わせ</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

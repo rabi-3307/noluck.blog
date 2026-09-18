@@ -1,0 +1,4 @@
+name = "yourlog"
+license = "MIT"
+description = "自作VPSでのインフラ学習を記録する、落ち着いたトーンの個人ブログテーマ"
+min_version = "0.100.0"

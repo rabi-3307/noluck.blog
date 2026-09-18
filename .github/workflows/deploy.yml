@@ -26,7 +26,7 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "public/*"
-          target: "/var/www/yourlog/"
+          target: "/var/www/yourlog/public/"
           strip_components: 1
 
       - name: Fix permissions and restart Nginx

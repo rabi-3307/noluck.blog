@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【第8回】Google Search Console編 — Googleにサイトを登録する — NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
+<meta name="description" content="情報系学生がインフラエンジニアを目指し、VPS契約からSSH・Nginx・DNS構築まで独学で挑戦する記録。つまずいたエラーと解決法をそのまま公開しています。">
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XGFPRTEELF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XGFPRTEELF');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4114224902653206"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">root@noluckblog:~$</a>
+    <nav class="nav">
+      
+      <a href="/categories/guide/">技術解説</a>
+      
+      <a href="/categories/troubleshooting/">トラブル対応</a>
+      
+      <a href="/categories/beginners/">初心者向け</a>
+      
+      <a href="/categories/diary/">振り返り</a>
+      
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap">
+
+
+<article class="post">
+  <p class="eyebrow">posts</p>
+  <h1 class="post-title">【第8回】Google Search Console編 — Googleにサイトを登録する</h1>
+  <time class="mono post-date" datetime="2026-09-25">2026.09.25</time>
+  <div class="post-body">
+    <p>この記事を読み終えると、Googleにサイトの存在を知らせ、検索結果に載る準備ができた状態になります。</p>
+<h2 id="操作手順">操作手順</h2>
+<h3 id="1-サイトを登録する">1. サイトを登録する</h3>
+<ol>
+<li>Google Search Consoleを開き、Googleアカウントでログインする</li>
+<li>「プロパティを追加」→ 左側の「ドメイン」を選ぶ</li>
+<li>自分のドメイン(<code>example.com</code>)を入力して「続行」</li>
+<li>表示された <code>google-site-verification=...</code> の文字列をコピーする</li>
+</ol>
+<h3 id="2-持ち主であることを証明する">2. 持ち主であることを証明する</h3>
+<ol>
+<li>お名前.com Naviで「DNSレコード設定」を開く</li>
+<li>TXTレコードを追加する</li>
+</ol>
+<table>
+	<thead>
+			<tr>
+					<th>ホスト名</th>
+					<th>TYPE</th>
+					<th>VALUE</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>(空欄)</td>
+					<td>TXT</td>
+					<td>コピーした文字列</td>
+			</tr>
+	</tbody>
+</table>
+<ol start="3">
+<li>「追加」→「確認画面へ進む」→「設定する」</li>
+<li>Search Consoleに戻って「確認」を押す</li>
+</ol>
+<h3 id="3-サイトマップを送る">3. サイトマップを送る</h3>
+<p>Hugoはサイトマップ(記事の一覧表)を自動で作っています。</p>
+<ol>
+<li>左メニューの「サイトマップ」を開く</li>
+<li><code>sitemap.xml</code> と入力して「送信」</li>
+<li>ステータスが「成功しました」になればOK</li>
+</ol>
+<h3 id="4-トップページの登録をお願いする">4. トップページの登録をお願いする</h3>
+<ol>
+<li>上の検索窓に <code>https://example.com/</code> を入力</li>
+<li>「インデックス登録をリクエスト」を押す</li>
+</ol>
+<h2 id="つまずきやすい注意点">つまずきやすい注意点</h2>
+<p><strong>「確認」がすぐ失敗する</strong></p>
+<p>TXTレコードの反映待ちです。数十分〜数時間おいてからもう一度押してください。</p>
+<p><strong>TXTを追加するとき、Aレコードを消さない</strong></p>
+<p>同じ画面に第4回で作ったAレコードがあります。消すとサイトが表示されなくなります。</p>
+<p><strong>サイトマップが「無効」になる</strong></p>
+<p><code>hugo.toml</code> の <code>baseURL</code> が、サイトを作ったときの初期値(<code>https://example.org/</code> など)のまま、または <code>http://</code> のままになっていませんか。自分のドメインの <code>https://</code> に直してください。→ <a href="/posts/baseurl-https-hamatta/">baseURLとHTTPSでハマった話</a></p>
+<p><strong>「取得できませんでした」と出る</strong></p>
+<p>登録直後によく出ます。しばらく待つと「成功しました」に変わることがあります。</p>
+<p><strong>すぐには検索に出ない</strong></p>
+<p>検索結果に出るまで数日〜数週間かかります。</p>
+<p>実際に登録したときの記録は <a href="/posts/search-console-donyu/">Search Consoleを導入した話</a> にあります。</p>
+<h2 id="次の記事">次の記事</h2>
+<p><a href="/posts/series-09-analytics/">【第9回】Google Analytics編 — 何人来たかを測る</a></p>
+
+  </div>
+</article>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>このサイトは自作VPS上のNginx &#43; Hugoで動いています。</p>
+    <p class="footer-links">
+      <a href="/about/">このサイトについて</a>
+      <a href="/privacy-policy/">プライバシーポリシー</a>
+      <a href="/contact/">お問い合わせ</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

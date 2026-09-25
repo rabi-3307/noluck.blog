@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【第6回】HTTPS編 — 無料の証明書で鍵マークを付ける — NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
+<meta name="description" content="情報系学生がインフラエンジニアを目指し、VPS契約からSSH・Nginx・DNS構築まで独学で挑戦する記録。つまずいたエラーと解決法をそのまま公開しています。">
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XGFPRTEELF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XGFPRTEELF');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4114224902653206"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">root@noluckblog:~$</a>
+    <nav class="nav">
+      
+      <a href="/categories/guide/">技術解説</a>
+      
+      <a href="/categories/troubleshooting/">トラブル対応</a>
+      
+      <a href="/categories/beginners/">初心者向け</a>
+      
+      <a href="/categories/diary/">振り返り</a>
+      
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap">
+
+
+<article class="post">
+  <p class="eyebrow">posts</p>
+  <h1 class="post-title">【第6回】HTTPS編 — 無料の証明書で鍵マークを付ける</h1>
+  <time class="mono post-date" datetime="2026-09-25">2026.09.25</time>
+  <div class="post-body">
+    <p>この記事を読み終えると、サイトが <code>https://</code> で表示され、ブラウザに鍵マークが付いた状態になります。</p>
+<h2 id="始める前に確認すること">始める前に確認すること</h2>
+<ul>
+<li><code>nslookup example.com</code> でサーバーのIPアドレスが出る(第4回)</li>
+<li>ConoHaのセキュリティグループに <code>IPv4v6-Web</code> が付いている(第3回)</li>
+<li>ufwで <code>80</code> と <code>443</code> を許可している(第5回)</li>
+</ul>
+<h2 id="操作手順">操作手順</h2>
+<p>サーバーにSSHで入ってから打ちます。<code>example.com</code> は自分のドメインに置き換えてください。</p>
+<ol>
+<li>Certbot(証明書を取ってくるツール)を入れる</li>
+</ol>
+<pre tabindex="0"><code>apt install certbot python3-certbot-nginx -y
+</code></pre><ol start="2">
+<li>証明書を取得する</li>
+</ol>
+<pre tabindex="0"><code>certbot --nginx -d example.com -d www.example.com
+</code></pre><ol start="3">
+<li>質問に答える</li>
+</ol>
+<table>
+	<thead>
+			<tr>
+					<th>質問</th>
+					<th>答え</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>メールアドレス</td>
+					<td>自分のメールアドレス(期限切れの通知が届く)</td>
+			</tr>
+			<tr>
+					<td>利用規約に同意するか</td>
+					<td><code>Y</code></td>
+			</tr>
+			<tr>
+					<td>お知らせメールを受け取るか</td>
+					<td><code>N</code> でOK</td>
+			</tr>
+	</tbody>
+</table>
+<ol start="4">
+<li><code>Successfully deployed certificate</code> と出れば成功</li>
+<li>ブラウザで <code>https://example.com</code> を開き、鍵マークが付いているか確認する</li>
+<li>自動更新が動くかテストする</li>
+</ol>
+<pre tabindex="0"><code>certbot renew --dry-run
+</code></pre><p><code>Congratulations, all simulated renewals succeeded</code> と出ればOKです。</p>
+<ol start="7">
+<li>手元のPCで <code>hugo.toml</code> の <code>baseURL</code> を <code>https://</code> に書き換える</li>
+</ol>
+<pre tabindex="0"><code>baseURL = &#34;https://example.com/&#34;
+</code></pre><h2 id="つまずきやすい注意点">つまずきやすい注意点</h2>
+<p><strong>DNSが反映される前に実行すると失敗する</strong></p>
+<p>Certbotは「そのドメインが本当にこのサーバーを指しているか」を確認します。<code>nslookup</code> でIPアドレスが出るまで待ってください。</p>
+<p><strong>https が表示されない</strong></p>
+<p>443番が閉じている可能性があります。ufwとConoHaのセキュリティグループの両方を確認してください。</p>
+<p><strong>baseURLを http のままにしない</strong></p>
+<p>サイトマップが「無効」と言われるなど、あとで別のトラブルになります。→ <a href="/posts/baseurl-https-hamatta/">baseURLとHTTPSでハマった話</a></p>
+<p><strong>Certbotが書いた行は消さない</strong></p>
+<p>CertbotはNginxの設定ファイルを自動で書き換えます。<code># managed by Certbot</code> と付いた行は消さないでください。</p>
+<p><strong>証明書の期限は90日</strong></p>
+<p>自動更新されますが、ときどき確認しておくと安心です。</p>
+<pre tabindex="0"><code>systemctl list-timers | grep certbot
+</code></pre><p>HTTPとHTTPSの違いは <a href="/posts/http-vs-https/">HTTPとHTTPSの違い</a> で解説しています。</p>
+<h2 id="次の記事">次の記事</h2>
+<p><a href="/posts/series-07-kiji/">【第7回】記事の作成編 — Hugoで書いて公開するまで</a></p>
+
+  </div>
+</article>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>このサイトは自作VPS上のNginx &#43; Hugoで動いています。</p>
+    <p class="footer-links">
+      <a href="/about/">このサイトについて</a>
+      <a href="/privacy-policy/">プライバシーポリシー</a>
+      <a href="/contact/">お問い合わせ</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

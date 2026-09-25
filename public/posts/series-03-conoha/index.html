@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【第3回】ConoHa編 — VPSを契約してサーバーを起動する — NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
+<meta name="description" content="情報系学生がインフラエンジニアを目指し、VPS契約からSSH・Nginx・DNS構築まで独学で挑戦する記録。つまずいたエラーと解決法をそのまま公開しています。">
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XGFPRTEELF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XGFPRTEELF');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4114224902653206"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">root@noluckblog:~$</a>
+    <nav class="nav">
+      
+      <a href="/categories/guide/">技術解説</a>
+      
+      <a href="/categories/troubleshooting/">トラブル対応</a>
+      
+      <a href="/categories/beginners/">初心者向け</a>
+      
+      <a href="/categories/diary/">振り返り</a>
+      
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap">
+
+
+<article class="post">
+  <p class="eyebrow">posts</p>
+  <h1 class="post-title">【第3回】ConoHa編 — VPSを契約してサーバーを起動する</h1>
+  <time class="mono post-date" datetime="2026-09-25">2026.09.25</time>
+  <div class="post-body">
+    <p>この記事を読み終えると、ConoHa VPSでサーバーが起動し、接続先のIPアドレスが分かる状態になります。</p>
+<h2 id="操作手順">操作手順</h2>
+<ol>
+<li>ConoHaの公式サイトで「今すぐお申し込み」からアカウントを作成する(メールアドレス・パスワード・電話番号の認証)</li>
+<li>支払い方法(クレジットカード)を登録する</li>
+<li>管理画面で「サーバー追加」を押す</li>
+<li>次のように選ぶ</li>
+</ol>
+<table>
+	<thead>
+			<tr>
+					<th>項目</th>
+					<th>選ぶもの</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>サービス</td>
+					<td>VPS</td>
+			</tr>
+			<tr>
+					<td>プラン</td>
+					<td>メモリ1GB</td>
+			</tr>
+			<tr>
+					<td>イメージ</td>
+					<td>Ubuntu 24.04</td>
+			</tr>
+			<tr>
+					<td>rootパスワード</td>
+					<td>自分で決める(パスワード管理アプリに保存)</td>
+			</tr>
+			<tr>
+					<td>SSH Key</td>
+					<td>今は「使用しない」でOK(第5回で設定)</td>
+			</tr>
+	</tbody>
+</table>
+<ol start="5">
+<li>セキュリティグループで、<code>default</code> に加えて <code>IPv4v6-SSH</code> と <code>IPv4v6-Web</code> を追加する</li>
+<li>「追加」を押す</li>
+<li>サーバー一覧でステータスが「起動中」になったら、IPアドレス(<code>xxx.xxx.xxx.xxx</code> の形)をメモする</li>
+</ol>
+<h3 id="料金タイプの選び方">料金タイプの選び方</h3>
+<table>
+	<thead>
+			<tr>
+					<th>料金タイプ</th>
+					<th>向いている人</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>時間課金</td>
+					<td>まず試してみたい人</td>
+			</tr>
+			<tr>
+					<td>まとめトク(長期割引)</td>
+					<td>続けると決めた人</td>
+			</tr>
+	</tbody>
+</table>
+<p>最初は時間課金で始めて、続けると決めてから長期割引に切り替えるのが安全です。</p>
+<h2 id="つまずきやすい注意点">つまずきやすい注意点</h2>
+<p><strong>セキュリティグループを付けないとつながらない</strong></p>
+<p>ConoHa VPS 3.0では、サーバーの中の設定とは別に、管理画面のセキュリティグループで通信を許可する必要があります。<code>IPv4v6-SSH</code> が無いとSSHがタイムアウトし、<code>IPv4v6-Web</code> が無いとサイトが表示されません。これで数日ハマりました。詳しくは <a href="/posts/ssh-conoha-hamatta/">ConoHaでSSHがつながらなかった話</a> と <a href="/posts/ufw-vs-secgroup/">ufwとセキュリティグループの違い</a> へ。</p>
+<p><strong>サーバーを「停止」しても料金はかかる</strong></p>
+<p>時間課金は、サーバーを削除するまで課金が続きます。使わないなら削除してください。</p>
+<p><strong>rootパスワードは誰にも見せない</strong></p>
+<p>スクリーンショットを人に送るときも、パスワードやIPアドレスが写っていないか確認してください。</p>
+<p><strong>画面の見た目は変わることがある</strong></p>
+<p>ボタンの名前や配置は変更されることがあります。見つからないときは公式のマニュアルを確認してください。</p>
+<h2 id="次の記事">次の記事</h2>
+<p><a href="/posts/series-04-domain/">【第4回】ドメイン編 — 独自ドメインを取得してサーバーにつなぐ</a></p>
+
+  </div>
+</article>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>このサイトは自作VPS上のNginx &#43; Hugoで動いています。</p>
+    <p class="footer-links">
+      <a href="/about/">このサイトについて</a>
+      <a href="/privacy-policy/">プライバシーポリシー</a>
+      <a href="/contact/">お問い合わせ</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

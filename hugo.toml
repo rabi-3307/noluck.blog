@@ -3,44 +3,68 @@ languageCode = "ja"
 title = "NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録"
 theme = "yourlog"
 [params]
-  description = "情報系学生がインフラエンジニアを目指し、VPS契約からSSH・Nginx・DNS構築まで独学で挑戦する記録。つまずいたエラーと解決法をそのまま公開しています。"
-  slug = "noluckblog"
-  eyebrow = "個人開発ログ — インフラを一から学ぶ"
-  heroTitle = "VPSを一から建てて、動かして、壊しながら学ぶ。"
-  heroLead = "大学でHTML/CSSを学んだ筆者が、レンタルサーバーではなく自前のVPSでこのサイト自体を運用しながら、構築の記録を残していきます。"
-  footerText = "このサイトは自作VPS上のNginx + Hugoで動いています。"
-  statusServer = "ConoHa VPS"
-  statusStack = "Nginx / Hugo"
-  statusUptime = "-"
-  [[params.flow]]
-    num = "01"
-    title = "VPS選定"
-    desc = "契約・比較・料金"
-  [[params.flow]]
-    num = "02"
-    title = "初期設定"
-    desc = "SSH・ufw・fail2ban"
-  [[params.flow]]
-    num = "03"
-    title = "Hugo構築"
-    desc = "静的サイト・デプロイ"
-  [[params.flow]]
-    num = "04"
-    title = "運用・監視"
-    desc = "エラー対応・分析"
-[[menus.main]]
-  name = "技術解説"
-  url = "/categories/guide/"
-  weight = 1
-[[menus.main]]
-  name = "トラブル対応"
-  url = "/categories/troubleshooting/"
-  weight = 2
-[[menus.main]]
-  name = "初心者向け"
-  url = "/categories/beginners/"
-  weight = 3
-[[menus.main]]
-  name = "振り返り"
-  url = "/categories/diary/"
-  weight = 4
+heroAccent = "初心者必見‼"
+heroTitle = "知識ゼロでVPSブログを制作"
+heroLead = "パソコン1台と少しのお金だけで、自分のサーバーにブログを公開するまでの記録です。"
+heroPoints = [
+  "つまずいた所と直し方まで全部書いてある",
+  "かかるのはサーバー代とドメイン代だけ",
+  "コマンドはコピペでそのまま使える",
+  "順番どおりに真似すれば公開できる",
+]
+
+startLabel = "はじめての方はこちら"
+startTitle = "第1回から順番に読む"
+startDesc = "全10回＋番外編。1回ずつ真似するだけで、自分のサイトを公開できます。"
+startURL = "/posts/series-01-keikaku/"
+
+stepsLabel = "自分のサイトができるまで"
+helpText = "うまくいかないときは → トラブル対応の記事"
+helpURL = "/categories/troubleshooting/"
+
+[[params.steps]]
+  num = "1"
+  title = "準備する"
+  desc = "何で作るか決めて、パソコンに必要なものを入れる"
+  links = [
+    { label = "第1回 計画", url = "/posts/series-01-keikaku/" },
+    { label = "第2回 機材", url = "/posts/series-02-kizai/" },
+  ]
+
+[[params.steps]]
+  num = "2"
+  title = "土地と住所を手に入れる"
+  desc = "サーバー(ネット上の土地)とドメイン(サイトの住所)を借りる"
+  links = [
+    { label = "第3回 サーバー", url = "/posts/series-03-conoha/" },
+    { label = "第4回 ドメイン", url = "/posts/series-04-domain/" },
+  ]
+
+[[params.steps]]
+  num = "3"
+  title = "サイトを建てる"
+  desc = "土地にサイトを建てて、鍵をかけて、記事を書く"
+  links = [
+    { label = "第5回 環境づくり", url = "/posts/series-05-kankyou/" },
+    { label = "第6回 鍵をかける", url = "/posts/series-06-https/" },
+    { label = "第7回 記事を書く", url = "/posts/series-07-kiji/" },
+  ]
+
+[[params.steps]]
+  num = "4"
+  title = "人に見てもらう"
+  desc = "Googleの検索に載せて、何人来たか測って、広告を付ける"
+  links = [
+    { label = "第8回 検索に載せる", url = "/posts/series-08-search-console/" },
+    { label = "第9回 人数を測る", url = "/posts/series-09-analytics/" },
+    { label = "第10回 収益化", url = "/posts/series-10-shuueki/" },
+  ]
+
+[[params.steps]]
+  num = "+"
+  title = "もっと楽にする"
+  desc = "慣れてきたら。公開作業をボタン1つにする"
+  links = [
+    { label = "番外編1 URLを1つに", url = "/posts/series-ex1-www/" },
+    { label = "番外編2 自動で公開", url = "/posts/series-ex2-github/" },
+  ]

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>テンプレート on NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
-		<link>https://noluckblog.com/tags/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88/</link>
+		<link>http://localhost:1313/tags/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88/</link>
 		<description>Recent content in テンプレート on NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</description>
 		<generator>Hugo</generator>
 		<language>ja</language>
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Mon, 07 Sep 2026 00:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="https://noluckblog.com/tags/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:1313/tags/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>1つのファイルを直すだけで全ページに反映される仕組み(baseof.htmlとは)</title>
-				<link>https://noluckblog.com/posts/baseof-shikumi/</link>
+				<link>http://localhost:1313/posts/baseof-shikumi/</link>
 				<pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
-				<guid>https://noluckblog.com/posts/baseof-shikumi/</guid>
+				<guid>http://localhost:1313/posts/baseof-shikumi/</guid>
 				<description>&lt;p&gt;Google AdSenseのコードをどこに貼ればいいか調べていて、「各ページのheadタグに貼ってください」という説明と、実際にやっていること(1ファイルだけ編集する)にズレを感じたので、Hugoのテンプレートの仕組みを整理しておきます。&lt;/p&gt;&#xA;&lt;h2 id=&#34;普通のhtmlサイトの場合&#34;&gt;普通のHTMLサイトの場合&lt;/h2&gt;&#xA;&lt;p&gt;素のHTML/CSSでサイトを作ると、ページの数だけファイルが存在します。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;index.html      ← トップページ&#xA;about.html      ← Aboutページ&#xA;posts/a.html    ← 記事A&#xA;posts/b.html    ← 記事B&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;この場合、全ページに同じコード(AdSenseやAnalyticsのタグなど)を入れたければ、&lt;strong&gt;本当に1ファイルずつ、手作業で貼っていく&lt;/strong&gt;必要があります。AdSenseの「各ページに貼ってください」という説明文は、この前提で書かれています。&lt;/p&gt;&#xA;&lt;h2 id=&#34;hugoの場合テンプレートの継承という仕組み&#34;&gt;Hugoの場合:テンプレートの継承という仕組み&lt;/h2&gt;&#xA;&lt;p&gt;Hugoでは、ページごとにHTMLファイルを手書きするのではなく、&lt;strong&gt;「型」となるテンプレートファイルを1つ用意し、そこに中身(記事)を流し込んで、ページの数だけ自動生成する&lt;/strong&gt;という仕組みになっています。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;themes/yourlog/layouts/_default/baseof.html   ← 全ページ共通の「型」&#xA;                    ↓ hugoコマンドでビルド&#xA;public/index.html&#xA;public/posts/a/index.html&#xA;public/posts/b/index.html&#xA;public/about/index.html&#xA;...(全部同じ型から自動生成される)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;baseof.html&lt;/code&gt;の中には&lt;code&gt;{{ block &amp;quot;main&amp;quot; . }}{{ end }}&lt;/code&gt;という記述があり、ここに各ページ固有の中身(記事本文など)が差し込まれます。逆に言うと、&lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;部分のような&lt;strong&gt;全ページで共通の要素は、&lt;code&gt;baseof.html&lt;/code&gt;に1回書くだけで済む&lt;/strong&gt;ようになっています。&lt;/p&gt;&#xA;&lt;h2 id=&#34;実際に確認してみる&#34;&gt;実際に確認してみる&lt;/h2&gt;&#xA;&lt;p&gt;&lt;code&gt;baseof.html&lt;/code&gt;にAdSenseのコードを1行追加して&lt;code&gt;hugo&lt;/code&gt;コマンドを実行した後、生成された複数のファイルを見比べてみました。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public/index.html&#xA;public/posts/vps-keiyaku-hamatta/index.html&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;どちらの&lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;の中にも、同じAdSenseのコードが入っていました。&lt;strong&gt;1箇所を直しただけで、生成されるすべてのページに展開されている&lt;/strong&gt;ことが確認できます。&lt;/p&gt;&#xA;&lt;h2 id=&#34;なぜこの仕組みが便利なのか&#34;&gt;なぜこの仕組みが便利なのか&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;全ページ共通の要素(広告タグ、Analytics、ナビゲーションメニューなど)を、1箇所で一括管理できる&lt;/li&gt;&#xA;&lt;li&gt;修正が必要になったときも、直す場所は1つで済む&lt;/li&gt;&#xA;&lt;li&gt;手作業でのコピペ漏れが起きない&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;逆に言えば、&lt;strong&gt;もしページごとに全く違う&lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;の中身にしたい場合は、少し工夫が必要&lt;/strong&gt;になりますが、今回のような「サイト全体で共通のタグを入れたい」というケースには、この仕組みがそのまま噛み合っています。&lt;/p&gt;&#xA;&lt;h2 id=&#34;まとめ&#34;&gt;まとめ&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;素のHTMLサイト向けの説明(「各ページに貼ってください」)は、Hugoのようなテンプレートエンジンを使う場合はそのまま当てはまらないことがある&lt;/li&gt;&#xA;&lt;li&gt;Hugoでは&lt;code&gt;baseof.html&lt;/code&gt;が全ページの「型」になっており、ここに1回書けば、生成される全ページに自動的に反映される&lt;/li&gt;&#xA;&lt;li&gt;「本当に反映されているか不安なとき」は、生成された複数のページのHTMLを見比べて確認するのが確実&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;ツールの一般的な説明書きと、自分が使っている仕組みの前提が違うことに気づかず混乱する、というのは今後もありそうなので、「この操作は本当に1回で済むのか、それとも繰り返す必要があるのか」を都度立ち止まって考える癖をつけたいと思います。&lt;/p&gt;</description>
 			</item>
 	</channel>

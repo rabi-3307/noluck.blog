@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【第5回】環境づくり編 — SSH・ufw・Nginx・Hugoを準備する — NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
+<meta name="description" content="情報系学生がインフラエンジニアを目指し、VPS契約からSSH・Nginx・DNS構築まで独学で挑戦する記録。つまずいたエラーと解決法をそのまま公開しています。">
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XGFPRTEELF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XGFPRTEELF');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4114224902653206"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">root@noluckblog:~$</a>
+    <nav class="nav">
+      
+      <a href="/categories/guide/">技術解説</a>
+      
+      <a href="/categories/troubleshooting/">トラブル対応</a>
+      
+      <a href="/categories/beginners/">初心者向け</a>
+      
+      <a href="/categories/diary/">振り返り</a>
+      
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap">
+
+
+<article class="post">
+  <p class="eyebrow">posts</p>
+  <h1 class="post-title">【第5回】環境づくり編 — SSH・ufw・Nginx・Hugoを準備する</h1>
+  <time class="mono post-date" datetime="2026-09-25">2026.09.25</time>
+  <div class="post-body">
+    <p>この記事を読み終えると、サーバーにSSHで入れて、ブラウザでNginxのページが表示され、手元のPCでHugoが使える状態になります。</p>
+<p>コマンドの <code>xxx.xxx.xxx.xxx</code> はサーバーのIPアドレス、<code>example.com</code> は自分のドメインに置き換えてください。</p>
+<h2 id="操作手順">操作手順</h2>
+<h3 id="1-sshでサーバーに入る">1. SSHでサーバーに入る</h3>
+<p>PowerShellで打ちます。</p>
+<pre tabindex="0"><code>ssh root@xxx.xxx.xxx.xxx
+</code></pre><p>初回は <code>Are you sure you want to continue connecting</code> と聞かれるので <code>yes</code>。続けてrootパスワードを入力します(入力中は何も表示されませんが、打てています)。</p>
+<h3 id="2-サーバーを最新にする">2. サーバーを最新にする</h3>
+<p>ここからはサーバーの中で打ちます。</p>
+<pre tabindex="0"><code>apt update &amp;&amp; apt upgrade -y
+</code></pre><h3 id="3-nginxを入れる">3. Nginxを入れる</h3>
+<pre tabindex="0"><code>apt install nginx -y
+systemctl status nginx
+</code></pre><p><code>active (running)</code> と出ればOK。ブラウザで <code>http://xxx.xxx.xxx.xxx</code> を開き、「Welcome to nginx!」が出れば成功です。</p>
+<h3 id="4-ファイアウォールufwを設定する">4. ファイアウォール(ufw)を設定する</h3>
+<pre tabindex="0"><code>ufw allow 22/tcp
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw enable
+ufw status
+</code></pre><p><code>22</code> <code>80</code> <code>443</code> が <code>ALLOW</code> になっていればOKです。</p>
+<h3 id="5-sshを鍵認証にする">5. SSHを鍵認証にする</h3>
+<p><strong>手元のPC</strong>のPowerShellで鍵を作ります。質問はすべてEnterでOKです。</p>
+<pre tabindex="0"><code>ssh-keygen -t ed25519
+</code></pre><p>公開鍵をサーバーに登録します。</p>
+<pre tabindex="0"><code>type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh root@xxx.xxx.xxx.xxx &#34;mkdir -p ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys &amp;&amp; chmod 600 ~/.ssh/authorized_keys&#34;
+</code></pre><p>もう一度 <code>ssh root@xxx.xxx.xxx.xxx</code> で入り、<strong>パスワードを聞かれなければ成功</strong>です。</p>
+<p>最後に、サーバーでパスワードログインを止めます。</p>
+<pre tabindex="0"><code>nano /etc/ssh/sshd_config
+</code></pre><p><code>PasswordAuthentication</code> の行を <code>PasswordAuthentication no</code> にして保存(Ctrl+O → Enter → Ctrl+X)し、再起動します。</p>
+<pre tabindex="0"><code>systemctl restart ssh
+</code></pre><h3 id="6-サイトの置き場所とnginxの設定を作る">6. サイトの置き場所とNginxの設定を作る</h3>
+<pre tabindex="0"><code>mkdir -p /var/www/yourlog/public
+nano /etc/nginx/sites-available/yourlog
+</code></pre><p>次の内容を貼って保存します。</p>
+<pre tabindex="0"><code>server {
+    listen 80;
+    server_name example.com www.example.com;
+    root /var/www/yourlog/public;
+    index index.html;
+}
+</code></pre><p>設定を有効にして、確認してから反映します。</p>
+<pre tabindex="0"><code>ln -s /etc/nginx/sites-available/yourlog /etc/nginx/sites-enabled/
+rm /etc/nginx/sites-enabled/default
+nginx -t
+systemctl reload nginx
+</code></pre><p><code>nginx -t</code> で <code>syntax is ok</code> と <code>test is successful</code> が出てから <code>reload</code> してください。</p>
+<h3 id="7-手元のpcでhugoのサイトを作る">7. 手元のPCでHugoのサイトを作る</h3>
+<p>第2回でHugoを入れていれば、PowerShellで作れます。</p>
+<pre tabindex="0"><code>hugo new site mysite
+cd mysite
+</code></pre><p>見た目(テーマ)はHugo公式サイトから選ぶか自作します。このブログはHTML/CSSで自作しました。</p>
+<h2 id="つまずきやすい注意点">つまずきやすい注意点</h2>
+<p><strong>SSHが <code>Connection timed out</code> になる</strong></p>
+<p>ConoHaのセキュリティグループに <code>IPv4v6-SSH</code> が付いているか確認してください。サーバーの中の設定ではなく、管理画面側の問題です。→ <a href="/posts/ssh-conoha-hamatta/">ConoHaでSSHがつながらなかった話</a></p>
+<p><strong>ufwを有効にする前に22番を許可する</strong></p>
+<p>順番を逆にすると、SSHで入れなくなって締め出されます。締め出されたらConoHaの管理画面の「コンソール」から入って直せます。</p>
+<p><strong>パスワードログインを止める前に、鍵で入れることを確認する</strong></p>
+<p>今のSSH画面は閉じずに、別のPowerShellで鍵ログインを試してください。失敗したまま止めると入れなくなります。</p>
+<p>また、Ubuntu 24.04では <code>/etc/ssh/sshd_config.d/</code> の中のファイルにも <code>PasswordAuthentication yes</code> が書かれていて、そちらが優先されることがあります。止めたはずなのにパスワードを聞かれる場合はそこを確認してください。</p>
+<p><strong>ページが 403 Forbidden になる</strong></p>
+<p>ファイルの読み取り権限が足りていません。</p>
+<pre tabindex="0"><code>chmod -R 755 /var/www/yourlog
+</code></pre><p><strong>秘密鍵は絶対に人に渡さない</strong></p>
+<p><code>id_ed25519</code>(<code>.pub</code> が付いていない方)が秘密鍵です。渡してよいのは <code>.pub</code> が付いた公開鍵だけです。</p>
+<p>Nginxの設定の意味は <a href="/posts/nginx-config-yomitoku/">Nginxの設定ファイルを読み解く</a> で解説しています。</p>
+<h2 id="次の記事">次の記事</h2>
+<p><a href="/posts/series-06-https/">【第6回】HTTPS編 — 無料の証明書で鍵マークを付ける</a></p>
+
+  </div>
+</article>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>このサイトは自作VPS上のNginx &#43; Hugoで動いています。</p>
+    <p class="footer-links">
+      <a href="/about/">このサイトについて</a>
+      <a href="/privacy-policy/">プライバシーポリシー</a>
+      <a href="/contact/">お問い合わせ</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

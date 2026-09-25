@@ -1,0 +1,65 @@
+heroAccent = "初心者必見‼"
+heroTitle = "知識ゼロでVPSブログを制作"
+heroLead = "パソコン1台と少しのお金だけで、自分のサーバーにブログを公開するまでの記録です。"
+heroPoints = [
+  "つまずいた所と直し方まで全部書いてある",
+  "かかるのはサーバー代とドメイン代だけ",
+  "コマンドはコピペでそのまま使える",
+  "順番どおりに真似すれば公開できる",
+]
+
+startLabel = "はじめての方はこちら"
+startTitle = "第1回から順番に読む"
+startDesc = "全10回＋番外編。1回ずつ真似するだけで、自分のサイトを公開できます。"
+startURL = "/posts/series-01-keikaku/"
+
+stepsLabel = "自分のサイトができるまで"
+helpText = "うまくいかないときは → トラブル対応の記事"
+helpURL = "/categories/troubleshooting/"
+
+[[params.steps]]
+  num = "1"
+  title = "準備する"
+  desc = "何で作るか決めて、パソコンに必要なものを入れる"
+  links = [
+    { label = "第1回 計画", url = "/posts/series-01-keikaku/" },
+    { label = "第2回 機材", url = "/posts/series-02-kizai/" },
+  ]
+
+[[params.steps]]
+  num = "2"
+  title = "土地と住所を手に入れる"
+  desc = "サーバー(ネット上の土地)とドメイン(サイトの住所)を借りる"
+  links = [
+    { label = "第3回 サーバー", url = "/posts/series-03-conoha/" },
+    { label = "第4回 ドメイン", url = "/posts/series-04-domain/" },
+  ]
+
+[[params.steps]]
+  num = "3"
+  title = "サイトを建てる"
+  desc = "土地にサイトを建てて、鍵をかけて、記事を書く"
+  links = [
+    { label = "第5回 環境づくり", url = "/posts/series-05-kankyou/" },
+    { label = "第6回 鍵をかける", url = "/posts/series-06-https/" },
+    { label = "第7回 記事を書く", url = "/posts/series-07-kiji/" },
+  ]
+
+[[params.steps]]
+  num = "4"
+  title = "人に見てもらう"
+  desc = "Googleの検索に載せて、何人来たか測って、広告を付ける"
+  links = [
+    { label = "第8回 検索に載せる", url = "/posts/series-08-search-console/" },
+    { label = "第9回 人数を測る", url = "/posts/series-09-analytics/" },
+    { label = "第10回 収益化", url = "/posts/series-10-shuueki/" },
+  ]
+
+[[params.steps]]
+  num = "+"
+  title = "もっと楽にする"
+  desc = "慣れてきたら。公開作業をボタン1つにする"
+  links = [
+    { label = "番外編1 URLを1つに", url = "/posts/series-ex1-www/" },
+    { label = "番外編2 自動で公開", url = "/posts/series-ex2-github/" },
+  ]

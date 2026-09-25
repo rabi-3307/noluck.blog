@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【第9回】Google Analytics編 — 何人来たかを測る — NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
+<meta name="description" content="情報系学生がインフラエンジニアを目指し、VPS契約からSSH・Nginx・DNS構築まで独学で挑戦する記録。つまずいたエラーと解決法をそのまま公開しています。">
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XGFPRTEELF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XGFPRTEELF');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4114224902653206"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">root@noluckblog:~$</a>
+    <nav class="nav">
+      
+      <a href="/categories/guide/">技術解説</a>
+      
+      <a href="/categories/troubleshooting/">トラブル対応</a>
+      
+      <a href="/categories/beginners/">初心者向け</a>
+      
+      <a href="/categories/diary/">振り返り</a>
+      
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap">
+
+
+<article class="post">
+  <p class="eyebrow">posts</p>
+  <h1 class="post-title">【第9回】Google Analytics編 — 何人来たかを測る</h1>
+  <time class="mono post-date" datetime="2026-09-25">2026.09.25</time>
+  <div class="post-body">
+    <p>この記事を読み終えると、サイトに何人来たか、どの記事が読まれているかが分かるようになります。</p>
+<h2 id="search-consoleとの違い">Search Consoleとの違い</h2>
+<table>
+	<thead>
+			<tr>
+					<th></th>
+					<th>Search Console(第8回)</th>
+					<th>Analytics(今回)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>分かること</td>
+					<td>検索で何回表示・クリックされたか</td>
+					<td>サイトに来た人が何をしたか</td>
+			</tr>
+			<tr>
+					<td>例</td>
+					<td>どんな検索ワードで見つかったか</td>
+					<td>何人来たか、どの記事を読んだか</td>
+			</tr>
+			<tr>
+					<td>タイミング</td>
+					<td>サイトに来る前</td>
+					<td>サイトに来た後</td>
+			</tr>
+	</tbody>
+</table>
+<p>両方入れておくのがおすすめです。</p>
+<h2 id="操作手順">操作手順</h2>
+<h3 id="1-アカウントを作る">1. アカウントを作る</h3>
+<ol>
+<li>Google Analyticsを開き、「測定を開始」を押す</li>
+<li>アカウント名を入力(ブログ名など)</li>
+<li>プロパティ名を入力し、タイムゾーンを「日本」、通貨を「日本円」にする</li>
+<li>ビジネス情報と目的を選んで「作成」</li>
+</ol>
+<h3 id="2-サイトを登録する">2. サイトを登録する</h3>
+<ol>
+<li>プラットフォームで「ウェブ」を選ぶ</li>
+<li>URLに <code>https://example.com</code> を入れ、ストリーム名(ブログ名など)を入力して「作成」</li>
+<li>「タグの実装手順を表示」→「手動でインストールする」を選ぶ</li>
+<li>表示されたコード(<code>G-XXXXXXXXXX</code> を含む <code>&lt;script&gt;</code> から始まるもの)をコピーする</li>
+</ol>
+<h3 id="3-サイトに貼る">3. サイトに貼る</h3>
+<ol>
+<li>VSCodeで <code>themes/(テーマ名)/layouts/_default/baseof.html</code> を開く</li>
+<li><code>&lt;head&gt;</code> と <code>&lt;/head&gt;</code> の間、既存の行の下に貼り付けて保存する</li>
+</ol>
+<p>このファイルは全ページ共通の土台なので、1か所に貼るだけで全ページに反映されます。→ <a href="/posts/baseof-shikumi/">baseof.htmlの仕組み</a></p>
+<h3 id="4-公開して確認する">4. 公開して確認する</h3>
+<ol>
+<li>第7回の手順で公開する(<code>hugo</code> → サーバーへ転送)</li>
+<li>自分のサイトをブラウザで開く</li>
+<li>Analyticsの「レポート」→「リアルタイム」で、1人以上表示されれば成功</li>
+</ol>
+<h2 id="つまずきやすい注意点">つまずきやすい注意点</h2>
+<p><strong>貼るときに既存の行を消さない</strong></p>
+<p>コードを貼るときに <code>&lt;link rel=&quot;stylesheet&quot; ...&gt;</code> の行を消してしまい、サイト全体のデザインが崩れました。貼り付けは「追加」で、置き換えではありません。</p>
+<p><strong>リアルタイム以外は反映が遅い</strong></p>
+<p>普通のレポートに数字が出るまで24〜48時間かかります。0のままでも焦らなくて大丈夫です。</p>
+<p><strong>自分のアクセスも数えられる</strong></p>
+<p>記事の確認で自分が開いた分も1人として数えられます。</p>
+<p><strong>ログイン情報は誰にも教えない</strong></p>
+<p><code>G-XXXXXXXXXX</code>(測定ID)はページのソースに出るので見られても問題ありませんが、Googleアカウントのパスワードは別です。</p>
+<p>導入したときの記録は <a href="/posts/analytics-donyu/">Google Analyticsを導入した話</a> にあります。</p>
+<h2 id="次の記事">次の記事</h2>
+<p><a href="/posts/series-10-shuueki/">【第10回】収益化準備編 — AdSense申請とA8.net登録</a></p>
+
+  </div>
+</article>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>このサイトは自作VPS上のNginx &#43; Hugoで動いています。</p>
+    <p class="footer-links">
+      <a href="/about/">このサイトについて</a>
+      <a href="/privacy-policy/">プライバシーポリシー</a>
+      <a href="/contact/">お問い合わせ</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

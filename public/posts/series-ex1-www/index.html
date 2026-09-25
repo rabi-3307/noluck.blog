@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【番外編1】www統一編 — wwwあり・なしのURLを1つにまとめる — NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
+<meta name="description" content="情報系学生がインフラエンジニアを目指し、VPS契約からSSH・Nginx・DNS構築まで独学で挑戦する記録。つまずいたエラーと解決法をそのまま公開しています。">
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XGFPRTEELF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XGFPRTEELF');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4114224902653206"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">root@noluckblog:~$</a>
+    <nav class="nav">
+      
+      <a href="/categories/guide/">技術解説</a>
+      
+      <a href="/categories/troubleshooting/">トラブル対応</a>
+      
+      <a href="/categories/beginners/">初心者向け</a>
+      
+      <a href="/categories/diary/">振り返り</a>
+      
+    </nav>
+  </div>
+</header>
+
+
+<main class="wrap">
+
+
+<article class="post">
+  <p class="eyebrow">posts</p>
+  <h1 class="post-title">【番外編1】www統一編 — wwwあり・なしのURLを1つにまとめる</h1>
+  <time class="mono post-date" datetime="2026-09-25">2026.09.25</time>
+  <div class="post-body">
+    <p>この記事を読み終えると、<code>www.example.com</code> にアクセスしても <code>example.com</code> に自動で転送され、Googleの評価が1つのURLにまとまる状態になります。</p>
+<h2 id="なぜ必要か">なぜ必要か</h2>
+<p>Googleは <code>www.example.com</code> と <code>example.com</code> を別のページとして扱います。両方で同じ内容が見えていると「内容が重複したページ」とみなされ、検索の評価が2つに分かれてしまいます。</p>
+<h2 id="操作手順">操作手順</h2>
+<p>このブログは「wwwなし」に統一しました。<code>example.com</code> は自分のドメインに置き換えてください。</p>
+<h3 id="1-証明書に-www-が入っているか確認する">1. 証明書に www が入っているか確認する</h3>
+<p>サーバーで打ちます。</p>
+<pre tabindex="0"><code>certbot certificates
+</code></pre><p><code>Domains:</code> に <code>example.com</code> と <code>www.example.com</code> の両方があればOKです(第6回で両方指定していれば入っています)。</p>
+<h3 id="2-設定ファイルのバックアップを取る">2. 設定ファイルのバックアップを取る</h3>
+<pre tabindex="0"><code>cp /etc/nginx/sites-available/yourlog /root/yourlog.bak
+</code></pre><h3 id="3-nginxの設定を編集する">3. Nginxの設定を編集する</h3>
+<pre tabindex="0"><code>nano /etc/nginx/sites-available/yourlog
+</code></pre><p><code>listen 443 ssl</code> がある server ブロックの <code>server_name</code> から <code>www.example.com</code> を消し、<code>example.com</code> だけにします。</p>
+<p>そのうえで、ファイルの一番下に次のブロックを追加します。</p>
+<pre tabindex="0"><code>server {
+    listen 443 ssl;
+    server_name www.example.com;
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+    return 301 https://example.com$request_uri;
+}
+</code></pre><h3 id="4-確認してから反映する">4. 確認してから反映する</h3>
+<pre tabindex="0"><code>nginx -t
+systemctl reload nginx
+</code></pre><h3 id="5-転送されているか確認する">5. 転送されているか確認する</h3>
+<p>手元のPowerShellで打ちます。</p>
+<pre tabindex="0"><code>curl.exe -I https://www.example.com
+</code></pre><p><code>301</code> と <code>Location: https://example.com/</code> が出れば成功です。</p>
+<h3 id="6-canonical-タグを入れる">6. canonical タグを入れる</h3>
+<p><code>baseof.html</code> の <code>&lt;head&gt;</code> の中に1行追加します。「このページの正式なURLはこれです」とGoogleに伝えるタグです。</p>
+<pre tabindex="0"><code>&lt;link rel=&#34;canonical&#34; href=&#34;{{ .Permalink }}&#34;&gt;
+</code></pre><p>保存して、第7回の手順で公開します。</p>
+<h2 id="つまずきやすい注意点">つまずきやすい注意点</h2>
+<p><strong><code>nginx -t</code> が OK になるまで reload しない</strong></p>
+<p>書き間違いのまま反映すると、サイト全体が表示されなくなることがあります。失敗したらバックアップから戻せます。</p>
+<pre tabindex="0"><code>cp /root/yourlog.bak /etc/nginx/sites-available/yourlog
+</code></pre><p><strong>ブラウザでの確認はあてにならない</strong></p>
+<p>ブラウザは転送の結果を覚えてしまうので、設定を変えても前の動きのままに見えることがあります。<code>curl</code> かシークレットウィンドウで確認してください。</p>
+<p><strong>301 を使う</strong></p>
+<p>301は「引っ越しました(恒久)」、302は「一時的に移動中」という意味です。評価をまとめたいなら301です。</p>
+<p><strong>すぐには検索結果に反映されない</strong></p>
+<p>Googleが評価を1つにまとめるまで、数週間かかることがあります。</p>
+<h2 id="次の記事">次の記事</h2>
+<p><a href="/posts/series-ex2-github/">【番外編2】GitHub連携編 — git pushだけで公開まで自動化する</a></p>
+
+  </div>
+</article>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>このサイトは自作VPS上のNginx &#43; Hugoで動いています。</p>
+    <p class="footer-links">
+      <a href="/about/">このサイトについて</a>
+      <a href="/privacy-policy/">プライバシーポリシー</a>
+      <a href="/contact/">お問い合わせ</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

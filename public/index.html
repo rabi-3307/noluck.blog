@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta name="generator" content="Hugo 0.166.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta name="generator" content="Hugo 0.166.0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
-<meta name="description" content="情報系学生がインフラエンジニアを目指し、VPS契約からSSH・Nginx・DNS構築まで独学で挑戦する記録。つまずいたエラーと解決法をそのまま公開しています。">
+<meta name="description" content="">
 <link rel="stylesheet" href="/css/style.css">
 
 
@@ -26,16 +26,8 @@
 
 <header class="site-header">
   <div class="wrap header-inner">
-    <a href="/" class="logo">root@noluckblog:~$</a>
+    <a href="/" class="logo">root@yourlog:~$</a>
     <nav class="nav">
-      
-      <a href="/categories/guide/">技術解説</a>
-      
-      <a href="/categories/troubleshooting/">トラブル対応</a>
-      
-      <a href="/categories/beginners/">初心者向け</a>
-      
-      <a href="/categories/diary/">振り返り</a>
       
     </nav>
   </div>
@@ -46,62 +38,101 @@
 
 
 <section class="hero">
-  <p class="eyebrow">個人開発ログ — インフラを一から学ぶ</p>
-  <h1>VPSを一から建てて、動かして、壊しながら学ぶ。</h1>
-  <p class="lead">大学でHTML/CSSを学んだ筆者が、レンタルサーバーではなく自前のVPSでこのサイト自体を運用しながら、構築の記録を残していきます。</p>
-</section>
-
-<section class="status-panel" aria-label="サーバー稼働状況">
-  <div class="status-item">
-    <span class="status-label">STATUS</span>
-    <span class="status-value"><i class="dot" aria-hidden="true"></i>稼働中</span>
-  </div>
-  <div class="status-item">
-    <span class="status-label">SERVER</span>
-    <span class="status-value mono">ConoHa VPS</span>
-  </div>
-  <div class="status-item">
-    <span class="status-label">STACK</span>
-    <span class="status-value mono">Nginx / Hugo</span>
-  </div>
-  <div class="status-item">
-    <span class="status-label">UPTIME</span>
-    <span class="status-value mono">-</span>
-  </div>
+  
+  <h1><span class="hero-accent">初心者必見‼</span>知識ゼロでVPSブログを制作</h1>
+  <p class="lead">パソコン1台と少しのお金だけで、自分のサーバーにブログを公開するまでの記録です。</p>
+  
+  <ul class="hero-points">
+    <li>つまずいた所と直し方まで全部書いてある</li><li>かかるのはサーバー代とドメイン代だけ</li><li>コマンドはコピペでそのまま使える</li><li>順番どおりに真似すれば公開できる</li>
+  </ul>
+  
 </section>
 
 
+<a class="start-card" href="/posts/series-01-keikaku/">
+  <span class="start-label">はじめての方はこちら</span>
+  <span class="start-title">第1回から順番に読む</span>
+  <span class="start-desc">全10回＋番外編。1回ずつ真似するだけで、自分のサイトを公開できます。</span>
+  <span class="start-arrow" aria-hidden="true">→</span>
+</a>
 
-<section class="flow">
-  <p class="section-label">学習の流れ</p>
-  <div class="flow-grid">
+
+
+<section class="steps">
+  <p class="section-label">自分のサイトができるまで</p>
+  <ol class="steps-list">
     
-    <div class="flow-card">
-      <span class="flow-num">01</span>
-      <h3>VPS選定</h3>
-      <p>契約・比較・料金</p>
-    </div>
+    <li class="step">
+      <span class="step-num">1</span>
+      <div class="step-body">
+        <h3>準備する</h3>
+        <p>何で作るか決めて、パソコンに必要なものを入れる</p>
+        
+        <div class="step-links">
+          <a href="/posts/series-01-keikaku/">第1回 計画</a><a href="/posts/series-02-kizai/">第2回 機材</a>
+        </div>
+        
+      </div>
+    </li>
     
-    <div class="flow-card">
-      <span class="flow-num">02</span>
-      <h3>初期設定</h3>
-      <p>SSH・ufw・fail2ban</p>
-    </div>
+    <li class="step">
+      <span class="step-num">2</span>
+      <div class="step-body">
+        <h3>土地と住所を手に入れる</h3>
+        <p>サーバー(ネット上の土地)とドメイン(サイトの住所)を借りる</p>
+        
+        <div class="step-links">
+          <a href="/posts/series-03-conoha/">第3回 サーバー</a><a href="/posts/series-04-domain/">第4回 ドメイン</a>
+        </div>
+        
+      </div>
+    </li>
     
-    <div class="flow-card">
-      <span class="flow-num">03</span>
-      <h3>Hugo構築</h3>
-      <p>静的サイト・デプロイ</p>
-    </div>
+    <li class="step">
+      <span class="step-num">3</span>
+      <div class="step-body">
+        <h3>サイトを建てる</h3>
+        <p>土地にサイトを建てて、鍵をかけて、記事を書く</p>
+        
+        <div class="step-links">
+          <a href="/posts/series-05-kankyou/">第5回 環境づくり</a><a href="/posts/series-06-https/">第6回 鍵をかける</a><a href="/posts/series-07-kiji/">第7回 記事を書く</a>
+        </div>
+        
+      </div>
+    </li>
     
-    <div class="flow-card">
-      <span class="flow-num">04</span>
-      <h3>運用・監視</h3>
-      <p>エラー対応・分析</p>
-    </div>
+    <li class="step">
+      <span class="step-num">4</span>
+      <div class="step-body">
+        <h3>人に見てもらう</h3>
+        <p>Googleの検索に載せて、何人来たか測って、広告を付ける</p>
+        
+        <div class="step-links">
+          <a href="/posts/series-08-search-console/">第8回 検索に載せる</a><a href="/posts/series-09-analytics/">第9回 人数を測る</a><a href="/posts/series-10-shuueki/">第10回 収益化</a>
+        </div>
+        
+      </div>
+    </li>
     
-  </div>
+    <li class="step">
+      <span class="step-num">&#43;</span>
+      <div class="step-body">
+        <h3>もっと楽にする</h3>
+        <p>慣れてきたら。公開作業をボタン1つにする</p>
+        
+        <div class="step-links">
+          <a href="/posts/series-ex1-www/">番外編1 URLを1つに</a><a href="/posts/series-ex2-github/">番外編2 自動で公開</a>
+        </div>
+        
+      </div>
+    </li>
+    
+  </ol>
 </section>
+
+
+
+<p class="help"><a href="/categories/troubleshooting/">うまくいかないときは → トラブル対応の記事</a></p>
 
 
 <section class="articles">

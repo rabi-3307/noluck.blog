@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>キャリア on NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
-		<link>http://localhost:1313/tags/%E3%82%AD%E3%83%A3%E3%83%AA%E3%82%A2/</link>
+		<link>https://noluckblog.com/tags/%E3%82%AD%E3%83%A3%E3%83%AA%E3%82%A2/</link>
 		<description>Recent content in キャリア on NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</description>
 		<generator>Hugo</generator>
 		<language>ja</language>
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Sun, 06 Sep 2026 00:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/tags/%E3%82%AD%E3%83%A3%E3%83%AA%E3%82%A2/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://noluckblog.com/tags/%E3%82%AD%E3%83%A3%E3%83%AA%E3%82%A2/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>なぜインフラエンジニアを目指したのか</title>
-				<link>http://localhost:1313/posts/naze-infra-engineer/</link>
+				<link>https://noluckblog.com/posts/naze-infra-engineer/</link>
 				<pubDate>Sun, 06 Sep 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/posts/naze-infra-engineer/</guid>
+				<guid>https://noluckblog.com/posts/naze-infra-engineer/</guid>
 				<description>&lt;p&gt;技術的な内容が続いていたので、少し毛色を変えて、このブログを始めた動機について書いておきます。&lt;/p&gt;&#xA;&lt;h2 id=&#34;きっかけ&#34;&gt;きっかけ&lt;/h2&gt;&#xA;&lt;p&gt;大学でHTML/CSSを学ぶ中で、画面に表示される部分(フロントエンド)だけでなく、&lt;strong&gt;その裏側で動いている仕組み&lt;/strong&gt;に興味を持つようになりました。サイトがどうやってインターネット上に存在しているのか、サーバーとは何なのか、といった疑問が、もともとの出発点です。&lt;/p&gt;&#xA;&lt;h2 id=&#34;なぜ作るではなく動かす支える側を選んだか&#34;&gt;なぜ「作る」ではなく「動かす・支える」側を選んだか&lt;/h2&gt;&#xA;&lt;p&gt;Web制作の学習を進める中で、見た目を作る作業よりも、&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;サーバーを安定して動かし続けること&lt;/li&gt;&#xA;&lt;li&gt;セキュリティを確保すること&lt;/li&gt;&#xA;&lt;li&gt;障害が起きたときに原因を突き止めて直すこと&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;といった「支える」領域の方に、自分は強く関心が向いていることに気づきました。これがインフラエンジニアという職種を意識するようになったきっかけです。&lt;/p&gt;&#xA;&lt;h2 id=&#34;なぜ読んで学ぶではなく作って学ぶを選んだか&#34;&gt;なぜ「読んで学ぶ」ではなく「作って学ぶ」を選んだか&lt;/h2&gt;&#xA;&lt;p&gt;参考書や講座で知識を仕入れることもできますが、今回はあえて&lt;strong&gt;自分でVPSを契約し、実際に壊れたり動かなくなったりする経験を積みながら学ぶ&lt;/strong&gt;方法を選びました。&lt;/p&gt;&#xA;&lt;p&gt;理由は単純で、実際に手を動かしてみると、教科書には載っていない「実際に起きるトラブル」に何度も遭遇するからです。今回で言えば、&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;セキュリティグループとufw、両方揃わないと通信が通らないこと&lt;/li&gt;&#xA;&lt;li&gt;文字コードの違いで設定ファイルが壊れること&lt;/li&gt;&#xA;&lt;li&gt;ファイル転送のたびに権限がリセットされること&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;といった内容は、実際にエラーに直面して初めて実感を持って理解できたことばかりでした。&lt;/p&gt;&#xA;&lt;h2 id=&#34;このブログを書く意味&#34;&gt;このブログを書く意味&lt;/h2&gt;&#xA;&lt;p&gt;単に学んだことをメモするだけでなく、&lt;strong&gt;ブログとして公開する&lt;/strong&gt;形を選んだのには理由があります。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;文章として説明しようとすると、理解が曖昧な部分がはっきり見えてくる&lt;/li&gt;&#xA;&lt;li&gt;同じところでつまずく人の助けになる可能性がある&lt;/li&gt;&#xA;&lt;li&gt;継続的に更新した記録自体が、学習の積み重ねを示す一種のポートフォリオになる&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;今後の見通し&#34;&gt;今後の見通し&lt;/h2&gt;&#xA;&lt;p&gt;現時点では、VPSの契約・SSH・Nginx・DNS・HTTPS化・アクセス解析の導入まで一通り経験しました。次は、監視・自動化(CI/CD)・クラウドサービス(AWSなど)といった領域にも触れていきたいと考えています。&lt;/p&gt;&#xA;&lt;p&gt;技術記事が中心のブログですが、時々こうした振り返りの記事も挟みながら、学習の軌跡を残していきたいと思います。&lt;/p&gt;</description>
 			</item>
 	</channel>

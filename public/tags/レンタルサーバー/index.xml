@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>レンタルサーバー on NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</title>
-		<link>http://localhost:1313/tags/%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC/</link>
+		<link>https://noluckblog.com/tags/%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC/</link>
 		<description>Recent content in レンタルサーバー on NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録</description>
 		<generator>Hugo</generator>
 		<language>ja</language>
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Sun, 06 Sep 2026 00:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/tags/%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://noluckblog.com/tags/%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>VPSと共用レンタルサーバー、結局何が違うのか</title>
-				<link>http://localhost:1313/posts/vps-vs-rental/</link>
+				<link>https://noluckblog.com/posts/vps-vs-rental/</link>
 				<pubDate>Sun, 06 Sep 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/posts/vps-vs-rental/</guid>
+				<guid>https://noluckblog.com/posts/vps-vs-rental/</guid>
 				<description>&lt;p&gt;契約前に調べた際は「root権限があるかないか」という説明で分かった気になっていましたが、実際に運用してみて、その違いの重みを体感したので改めて整理します。&lt;/p&gt;&#xA;&lt;h2 id=&#34;そもそもの違い契約前の理解&#34;&gt;そもそもの違い(契約前の理解)&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;共用レンタルサーバー&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;VPS&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;権限&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;管理画面上の操作のみ&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;サーバーの管理者権限(root)が丸ごと与えられる&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;自由度&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;用意された機能内&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Nginx、Dockerなど何でも自分でインストール可能&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;実際に運用してみて分かったこと&#34;&gt;実際に運用してみて分かったこと&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-自由ということは全部自分の責任ということ&#34;&gt;1. 「自由」ということは「全部自分の責任」ということ&lt;/h3&gt;&#xA;&lt;p&gt;VPSでは、Webサーバーソフト(Nginx)のインストールから、ファイアウォールの設定、SSL証明書の導入まで、&lt;strong&gt;すべて自分の手で行う&lt;/strong&gt;必要がありました。共用レンタルサーバーであれば、多くの場合これらは事業者側が用意した管理画面から数クリックで完了します。&lt;/p&gt;&#xA;&lt;p&gt;自由度が高い分、&lt;strong&gt;セキュリティグループの設定漏れでSSHが繋がらない、ファイルの権限設定を誤って403エラーになる&lt;/strong&gt;、といったトラブルも、すべて自分で切り分けて解決する必要がありました。これは大変である一方、確実に技術力として身についている実感があります。&lt;/p&gt;&#xA;&lt;h3 id=&#34;2-osレベルのアップデート責任も自分にある&#34;&gt;2. OSレベルのアップデート責任も自分にある&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;*** System restart required ***&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;このような通知も、共用レンタルサーバーであれば事業者側が対応してくれる部分ですが、VPSでは自分で判断してコマンドを実行する必要があります。放置すればセキュリティリスクになり得るという意識を、常に持つ必要がありました。&lt;/p&gt;&#xA;&lt;h3 id=&#34;3-障害時の切り分けの幅が広い&#34;&gt;3. 障害時の切り分けの幅が広い&lt;/h3&gt;&#xA;&lt;p&gt;「繋がらない」という同じ症状でも、原因になり得る箇所が&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;サーバー自体の起動状態&lt;/li&gt;&#xA;&lt;li&gt;サーバー内部のファイアウォール(ufw)&lt;/li&gt;&#xA;&lt;li&gt;クラウド側のファイアウォール(セキュリティグループ)&lt;/li&gt;&#xA;&lt;li&gt;DNSの設定&lt;/li&gt;&#xA;&lt;li&gt;自分のネットワーク環境&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;と、共用レンタルサーバーでは意識する必要のなかった層まで広がります。裏を返せば、&lt;strong&gt;それだけ多くの技術要素に触れる機会がある&lt;/strong&gt;、ということでもありました。&lt;/p&gt;&#xA;&lt;h2 id=&#34;それでもvpsを選んでよかったと思う理由&#34;&gt;それでもVPSを選んでよかったと思う理由&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;学習目的であれば、多少壊れても実害が少ないうちに、本番相当の経験を積める&lt;/li&gt;&#xA;&lt;li&gt;実務(インフラエンジニア)で求められる知識と、直接重なる部分が多い&lt;/li&gt;&#xA;&lt;li&gt;「動かない」の原因を自力で切り分ける訓練そのものが、一番の収穫だった&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;まとめ&#34;&gt;まとめ&lt;/h2&gt;&#xA;&lt;p&gt;契約前は「自由度が高い」というメリットの面ばかり見ていましたが、実際に運用してみると、&lt;strong&gt;その自由度は同時に全責任を負うということでもある&lt;/strong&gt;、と実感しました。学習目的であればこのトレードオフは十分に価値があると感じていますが、「とにかく早く安定してサイトを公開したい」という場合は、共用レンタルサーバーやWordPress向けのホスティングサービスの方が適していると思います。&lt;/p&gt;</description>
 			</item>
 	</channel>

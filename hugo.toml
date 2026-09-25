@@ -68,3 +68,22 @@ helpURL = "/categories/troubleshooting/"
     { label = "番外編1 URLを1つに", url = "/posts/series-ex1-www/" },
     { label = "番外編2 自動で公開", url = "/posts/series-ex2-github/" },
   ]
+[[menus.main]]
+  name = "技術解説"
+  url = "/categories/guide/"
+  weight = 1
+
+[[menus.main]]
+  name = "トラブル対応"
+  url = "/categories/troubleshooting/"
+  weight = 2
+
+[[menus.main]]
+  name = "初心者向け"
+  url = "/categories/beginners/"
+  weight = 3
+
+[[menus.main]]
+  name = "振り返り"
+  url = "/categories/diary/"
+  weight = 4

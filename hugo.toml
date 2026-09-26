@@ -3,6 +3,7 @@ languageCode = "ja"
 title = "NoLuckBlog|未経験からインフラエンジニアを目指す学生の学習記録"
 theme = "yourlog"
 [params]
+description = "知識ゼロからVPSでブログを作って公開するまでの手順を、初心者向けにまとめています。"
 heroAccent = "初心者必見‼"
 heroTitle = "知識ゼロでVPSブログを制作"
 heroLead = "パソコン1台と少しのお金だけで、自分のサーバーにブログを公開するまでの記録です。"

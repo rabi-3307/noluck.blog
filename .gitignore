@@ -1,0 +1,6 @@
+public/
+resources/
+.hugo_build.lock
+github_actions_key*
+gha_deploy*
+*.bak

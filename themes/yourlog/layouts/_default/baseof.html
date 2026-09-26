@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
 <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+{{ if and (in (slice "taxonomy" "term") .Kind) (eq .Data.Plural "tags") }}<meta name="robots" content="noindex, follow">{{ end }}
 <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
 
 <!-- Google tag (gtag.js) -->

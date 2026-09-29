@@ -1,5 +1,6 @@
 +++
 title = "静的サイトとWordPress、運用してみて分かった違い"
+description = "静的サイト(Hugo)を数週間運用して、WordPressと比べた事前の予想が当たった点・外れた点を振り返りました。セキュリティ、更新の手間、想定外だった権限トラブルについて書いています。"
 date = 2026-09-06
 type = "posts"
 categories = ["guide"]

@@ -1,5 +1,6 @@
 +++
 title = "【番外編1】www統一編 — wwwあり・なしのURLを1つにまとめる"
+description = "wwwありとwwwなしのURLを1つにまとめる手順です。Nginxの設定で自動転送し、canonicalタグを入れて、Googleの評価が2つに分かれるのを防ぎます。"
 date = 2026-09-25T09:11:00+09:00
 categories = ["beginners"]
 +++

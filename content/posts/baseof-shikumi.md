@@ -1,5 +1,6 @@
 +++
 title = "1つのファイルを直すだけで全ページに反映される仕組み(baseof.htmlとは)"
+description = "AdSenseやAnalyticsのコードを「全ページに貼って」と言われても、Hugoなら1ファイル直すだけで済みます。その理由であるbaseof.html(テンプレートの継承)の仕組みを、普通のHTMLサイトと比べて解説します。"
 date = 2026-09-07
 type = "posts"
 categories = ["guide"]

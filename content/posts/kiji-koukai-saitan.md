@@ -1,5 +1,6 @@
 +++
 title = "【操作だけ】記事を公開する手順(PowerShellの開き方から)"
+description = "PowerShellの開き方から、Hugoの記事をVPSで公開するまでの操作だけを順番にまとめました。書かれている通りにクリックとコピペをすれば公開できます。"
 date = 2026-09-07
 type = "posts"
 categories = ["beginners"]

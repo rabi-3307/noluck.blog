@@ -1,5 +1,6 @@
 +++
 title = "Hugo・VPS・SSH・Nginxとは何か、初心者向けにまとめてみた"
+description = "自分でブログを作るときに出てくるHugo・VPS・SSH・Nginxとは何なのかを、初心者向けに1ページで整理しました。全体の流れと、絶対に公開してはいけない情報もまとめています。"
 date = 2026-08-24
 type = "posts"
 categories = ["guide"]

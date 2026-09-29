@@ -1,5 +1,6 @@
 +++
 title = "HTTPとHTTPSの違いを、実際のエラーから理解する"
+description = "HTTPとHTTPSの違いを、実際に出たエラーをきっかけに整理しました。暗号化が必要な理由、SSL証明書の役割、ポート80と443の違いを初心者向けに解説します。"
 date = 2026-09-06
 type = "posts"
 categories = ["guide"]

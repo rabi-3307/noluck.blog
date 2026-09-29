@@ -1,5 +1,6 @@
 +++
 title = "Nginxの設定ファイルを1行ずつ読み解く"
+description = "コピペで使っていたNginxの設定ファイルを1行ずつ読み解きました。server、listen、server_name、root、indexの意味と、ufwやセキュリティグループとの関係が分かります。"
 date = 2026-09-06
 type = "posts"
 categories = ["guide"]

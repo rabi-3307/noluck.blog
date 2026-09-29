@@ -1,5 +1,6 @@
 +++
 title = "【第6回】HTTPS編 — 無料の証明書で鍵マークを付ける"
+description = "Let's EncryptとCertbotを使って、無料でサイトをHTTPS化する手順です。始める前の確認事項から、質問への答え方、つまずきやすい注意点まで解説します。"
 date = 2026-09-25T09:06:00+09:00
 categories = ["beginners"]
 +++

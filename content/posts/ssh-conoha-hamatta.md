@@ -1,5 +1,6 @@
 +++
 title = "ConoHa VPSでSSH接続できずハマった話(セキュリティグループの罠)"
+description = "ConoHa VPSにSSHで接続できず、原因の切り分けに丸一日かかった記録です。サーバー、ufw、セキュリティグループ、自分のネットワークを順番に確認し、ConoHa特有の仕様にたどり着くまでをまとめました。"
 date = 2026-08-28
 type = "posts"
 categories = ["troubleshooting"]

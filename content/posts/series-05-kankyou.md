@@ -1,5 +1,6 @@
 +++
 title = "【第5回】環境づくり編 — SSH・ufw・Nginx・Hugoを準備する"
+description = "VPSにSSHで入り、サーバーの更新、Nginxのインストール、ufwの設定、鍵認証への切り替えまでを行います。手元のPCでHugoのサイトを作るところまで、コマンドをコピペで進められます。"
 date = 2026-09-25T09:05:00+09:00
 categories = ["beginners"]
 +++

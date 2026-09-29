@@ -1,5 +1,6 @@
 +++
 title = "SCPって何をしているコマンドなのか(SSHとの関係)"
+description = "記事の公開で使うscpコマンドが何をしているのかを整理しました。コマンドの読み方、パスワードを聞かれない理由、SSHとの関係、転送後に403エラーが出た原因まで分かります。"
 date = 2026-09-06
 type = "posts"
 categories = ["guide"]
@@ -15,7 +16,7 @@ SCP(Secure Copy)は、**SSHの仕組みを使って、ファイルを暗号化�
 普段使っているコマンドはこれです。
 
 ```powershell
-scp -r public\* root@163.44.103.60:/var/www/yourlog/public/
+scp -r public\* root@xxx.xxx.xxx.xxx:/var/www/yourlog/public/
 ```
 
 ## コマンドの構造を分解する
@@ -25,7 +26,7 @@ scp -r public\* root@163.44.103.60:/var/www/yourlog/public/
 | `scp` | ファイルを安全にコピーするコマンド |
 | `-r` | フォルダの中身をまるごと(再帰的に)コピーするという指定 |
 | `public\*` | コピー元(手元のPCにある`public`フォルダの中身全部) |
-| `root@163.44.103.60:` | コピー先の接続情報(ユーザー名@サーバーのIPアドレス) |
+| `root@xxx.xxx.xxx.xxx:` | コピー先の接続情報(ユーザー名@サーバーのIPアドレス) |
 | `/var/www/yourlog/public/` | コピー先の、サーバー上の具体的な保存場所 |
 
 `:`(コロン)を境に、前半が「誰の、どのサーバーに」、後半が「サーバー上のどこに」を指定している、という構造になっています。

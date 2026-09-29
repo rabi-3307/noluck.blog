@@ -1,5 +1,6 @@
 +++
 title = "hugo.tomlの文字化け事件と、HTTPS化(Let's Encrypt)でハマった話"
+description = "Search Consoleでサイトマップが無効になった原因を追ううちに、hugo.tomlの文字化け(BOM付きUTF-8)とHTTPS化の問題にぶつかった記録です。原因の切り分け方と解決までの手順をまとめています。"
 date = 2026-09-05
 type = "posts"
 categories = ["troubleshooting"]

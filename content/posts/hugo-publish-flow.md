@@ -1,5 +1,6 @@
 +++
 title = "記事を書いてから公開するまでの手順(PowerShellでの操作の流れ)"
+description = "Hugoで記事を書いてからVPSで公開するまでの流れを、PowerShellの操作順にまとめました。転送のたびに出た403エラーの原因と、毎回やる権限の直し方も解説します。"
 date = 2026-09-05
 type = "posts"
 categories = ["guide"]

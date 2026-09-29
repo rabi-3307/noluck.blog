@@ -1,5 +1,6 @@
 +++
 title = "Hugoの環境構築でつまずいたこと(インストール〜初回起動まで)"
+description = "WindowsにHugoをインストールして、初めてサイトを表示するまでにつまずいたことの記録です。wingetでの拡張版インストールや、フォルダ移動のミスなど、ハマりやすい点をまとめました。"
 date = 2026-08-24
 type = "posts"
 categories = ["troubleshooting"]

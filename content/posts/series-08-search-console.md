@@ -1,5 +1,6 @@
 +++
 title = "【第8回】Google Search Console編 — Googleにサイトを登録する"
+description = "Google Search Consoleにサイトを登録して、Googleに存在を知らせる手順です。DNSのTXTレコードでの所有権確認、サイトマップの送信、トップページの登録リクエストまで解説します。"
 date = 2026-09-25T09:08:00+09:00
 categories = ["beginners"]
 +++

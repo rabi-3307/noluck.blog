@@ -1,5 +1,6 @@
 +++
 title = "このブログのアクセスを正直に公開してみる(第1回)"
+description = "個人でVPSブログを運用すると、アクセスはどのくらい集まるのか。Search ConsoleとGoogle Analyticsの数字を、良い結果も悪い結果も隠さずに公開する記録の第1回です。"
 date = 2026-09-06
 type = "posts"
 categories = ["diary"]

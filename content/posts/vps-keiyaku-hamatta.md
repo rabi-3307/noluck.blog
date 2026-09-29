@@ -1,5 +1,6 @@
 +++
 title = "初めてのVPS契約でつまずいたこと(プラン選び・OS選び・まとめトクの罠)"
+description = "初めてConoHa VPSを契約したときに迷ったことの記録です。メモリ512MBと1GBのどちらにするか、OSにUbuntuを選んだ理由、「まとめトク」で契約した失敗、rootパスワードの扱いをまとめました。"
 date = 2026-08-27
 type = "posts"
 categories = ["troubleshooting"]

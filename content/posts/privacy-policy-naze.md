@@ -1,5 +1,6 @@
 +++
 title = "なぜプライバシーポリシーが必要なのか(AdSense審査の裏側を調べてみた)"
+description = "AdSenseの審査にプライバシーポリシーが必要な理由を調べてまとめました。Cookieと広告の関係、実際に書いた内容、運営者情報やお問い合わせページの役割も解説します。"
 date = 2026-09-06
 type = "posts"
 categories = ["guide"]

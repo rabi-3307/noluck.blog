@@ -1,5 +1,6 @@
 +++
 title = "文字コード沼:UTF-8・BOM・Shift-JISは何が違うのか"
+description = "UTF-8・BOM付きUTF-8・Shift-JISは何が違うのか。hugo.tomlが文字化けした実体験をもとに、文字コードの基本と、Windowsで文字化けが起きる理由を初心者向けに整理しました。"
 date = 2026-09-06
 type = "posts"
 categories = ["guide"]

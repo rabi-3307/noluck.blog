@@ -1,5 +1,6 @@
 +++
 title = "【第3回】ConoHa編 — VPSを契約してサーバーを起動する"
+description = "ConoHa VPSを契約してサーバーを起動するまでの手順です。アカウント作成、プランやOS(Ubuntu)の選び方、料金タイプの違い、つまずきやすい点を操作の順番どおりに解説します。"
 date = 2026-09-25T09:03:00+09:00
 categories = ["beginners"]
 +++

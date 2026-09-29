@@ -1,5 +1,6 @@
 +++
 title = "ここまでにかかった費用と労力を正直に計算してみた(WordPressだったらどうだったか)"
+description = "VPSとHugoでブログを作るのに、実際いくらかかり、どれだけ手間がかかったのか。サーバー代・ドメイン代と作業の労力を正直に計算し、WordPressを選んでいた場合と比べました。"
 date = 2026-09-08
 type = "posts"
 categories = ["beginners"]

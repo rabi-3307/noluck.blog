@@ -1,5 +1,6 @@
 +++
 title = "Hugoコマンド逆引き表(意味と使うタイミングまとめ)"
+description = "hugo server、hugo、hugo newなど、よく使うHugoコマンドの意味と使うタイミングを一覧にまとめました。「Unable to locate config file」が出たときの原因も分かります。"
 date = 2026-09-05
 type = "posts"
 categories = ["guide"]

@@ -1,5 +1,6 @@
 +++
 title = "【番外編2】GitHub連携編 — git pushだけで公開まで自動化する"
+description = "GitHub Actionsを使って、git pushするだけでHugoのビルドからVPSへの公開まで自動で終わるようにする手順です。自動デプロイ専用の鍵の作り方と、GitHubへの登録方法も解説します。"
 date = 2026-09-25T09:12:00+09:00
 categories = ["beginners"]
 +++

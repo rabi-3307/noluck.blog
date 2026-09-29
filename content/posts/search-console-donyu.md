@@ -1,5 +1,6 @@
 +++
 title = "Google Search Consoleを導入した話(所有権確認とサイトマップ送信でハマった記録)"
+description = "Google Search Consoleの導入でハマった記録です。DNSでの所有権確認から、サイトマップがうまく読み込まれなかった本当の原因(HTTPS未対応)にたどり着くまでをまとめています。"
 date = 2026-09-05
 type = "posts"
 categories = ["troubleshooting"]

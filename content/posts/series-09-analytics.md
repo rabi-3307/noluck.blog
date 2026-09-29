@@ -1,5 +1,6 @@
 +++
 title = "【第9回】Google Analytics編 — 何人来たかを測る"
+description = "Google Analytics(GA4)で、サイトに何人来たか、どの記事が読まれているかを測れるようにする手順です。Search Consoleとの違いや、Hugoのサイトへの貼り方も解説します。"
 date = 2026-09-25T09:09:00+09:00
 categories = ["beginners"]
 +++

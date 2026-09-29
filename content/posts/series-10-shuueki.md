@@ -1,5 +1,6 @@
 +++
 title = "【第10回】収益化準備編 — AdSense申請とA8.net登録"
+description = "Google AdSenseの審査申請と、A8.netへの登録を済ませる手順です。申請前に用意するページ、ads.txtの置き方、税務情報の入力、つまずきやすい注意点をまとめました。"
 date = 2026-09-25T09:10:00+09:00
 categories = ["beginners"]
 +++

@@ -1,5 +1,6 @@
 +++
 title = "ドメイン取得でハマった話(.com vs .dev、謎の無料オプション、認証メール迷子事件)"
+description = "独自ドメインの取得でつまずいた記録です。.comと.devのどちらにするか、「無料」オプションの落とし穴、認証メールが見つからない問題、DNSのAレコード設定までをまとめています。"
 date = 2026-08-29
 type = "posts"
 categories = ["troubleshooting"]

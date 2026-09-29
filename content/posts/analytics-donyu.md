@@ -1,5 +1,6 @@
 +++
 title = "Google Analytics(GA4)を導入した話(測定IDをHugoに組み込む)"
+description = "Hugoで作ったブログにGoogle Analytics(GA4)を導入した記録です。アカウント作成から測定IDの取得、テンプレートへの組み込み、リアルタイムレポートでの確認まで順番に解説します。"
 date = 2026-09-05
 type = "posts"
 categories = ["guide"]

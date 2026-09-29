@@ -136,3 +136,10 @@ sudo chmod -R 755 /var/www/yourlog
 | 転送のたびに403エラーが再発した | `scp`で転送するたびにファイル権限がリセットされていた | 転送後は`chmod`をセットの作業として習慣化する |
 
 1つのエラーの裏にもう1つ別の原因が隠れている、という展開が多く、原因を1つ直したら解決したと思ったら次のエラーが出る、を何度か繰り返しました。地道な切り分けの繰り返しでしたが、最終的にSearch Consoleで成功表示が出たときは、これまでで一番達成感がありました。
+
+## あわせて読みたい
+
+- [文字コード沼:UTF-8・BOM・Shift-JISは何が違うのか](/posts/character-encoding-numa/) — 文字化けの原因になった文字コードの仕組み
+- [HTTPとHTTPSの違いを、実際のエラーから理解する](/posts/http-vs-https/) — そもそもHTTPとHTTPSは何が違うのか
+- [【第6回】HTTPS編 — 無料の証明書で鍵マークを付ける](/posts/series-06-https/) — HTTPS化の手順だけを知りたい方へ
+- [Google Search Consoleを導入した話(所有権確認とサイトマップ送信でハマった記録)](/posts/search-console-donyu/) — Search Consoleを導入したときの記録

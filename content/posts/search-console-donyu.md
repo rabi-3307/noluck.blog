@@ -96,3 +96,9 @@ Let's EncryptでSSL証明書を導入し、サイトを`https://`で公開でき
 | サイトマップが「取得できません」のまま | サイトがまだHTTPS対応していなかった | `baseURL`をhttpsにする前提として、SSL化が先に必要 |
 
 Search Console自体の操作は難しくありませんでしたが、**裏側の設定(baseURL、HTTPS)が揃っていないと、入り口の登録作業でつまずく**という、地味に厄介な連鎖を経験しました。
+
+## あわせて読みたい
+
+- [【第8回】Google Search Console編 — Googleにサイトを登録する](/posts/series-08-search-console/) — 登録の手順だけを知りたい方へ
+- [hugo.tomlの文字化け事件と、HTTPS化(Let's Encrypt)でハマった話](/posts/baseurl-https-hamatta/) — サイトマップが無効になった原因を追った記録
+- [Google Analytics(GA4)を導入した話(測定IDをHugoに組み込む)](/posts/analytics-donyu/) — 次に導入したGoogle Analyticsの記録

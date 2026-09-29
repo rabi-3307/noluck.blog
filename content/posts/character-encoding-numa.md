@@ -61,3 +61,8 @@ Get-Content hugo.toml -Encoding UTF8   # 正しく見える
 - 「UTF-8」と一言で言っても、**BOMの有無で挙動が変わる場合がある**ということを知っておく
 
 普段何気なく保存している文字が、裏側でこんなに複雑なルールに支えられていると実感した出来事でした。
+
+## あわせて読みたい
+
+- [hugo.tomlの文字化け事件と、HTTPS化(Let's Encrypt)でハマった話](/posts/baseurl-https-hamatta/) — 文字化けが実際に起きたときの記録
+- [Hugoの環境構築でつまずいたこと(インストール〜初回起動まで)](/posts/hugo-kankyou-kouchiku/) — Hugoの環境構築でつまずいたこと

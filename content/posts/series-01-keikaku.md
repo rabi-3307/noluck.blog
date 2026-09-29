@@ -59,6 +59,11 @@ VPSを選ぶ場合、日本国内だとConoHa・さくらのVPS・Xserver VPSあ
 
 かかった費用と労力の全体は [ここまでにかかった費用と労力](/posts/cost-effort-hikaku/) にまとめています。
 
+## あわせて読みたい
+
+- [VPSと共用レンタルサーバー、結局何が違うのか](/posts/vps-vs-rental/) — VPSとレンタルサーバーの違いをもっと詳しく
+- [なぜインフラエンジニアを目指したのか](/posts/naze-infra-engineer/) — 筆者がこのブログを始めた理由
+
 ## 次の記事
 
 [【第2回】機材編 — 必要なPCとソフト、あると便利なもの](/posts/series-02-kizai/)

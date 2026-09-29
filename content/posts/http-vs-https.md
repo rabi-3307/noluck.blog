@@ -65,3 +65,9 @@ sudo certbot --nginx -d noluckblog.com -d www.noluckblog.com
 ## 学び
 
 「HTTPSにする」という作業は、単に設定ファイルの記述を変えるだけでは完結せず、**証明書という実体を用意して、初めて成立する仕組み**だと理解できました。`baseURL`の記述と、サーバーの実際の状態が食い違っていたために起きたエラーでしたが、逆にこのエラーのおかげで、普段何気なく見ている鍵マークの裏側を、初めてきちんと理解する機会になりました。
+
+## あわせて読みたい
+
+- [【第6回】HTTPS編 — 無料の証明書で鍵マークを付ける](/posts/series-06-https/) — 無料の証明書でHTTPS化する手順
+- [hugo.tomlの文字化け事件と、HTTPS化(Let's Encrypt)でハマった話](/posts/baseurl-https-hamatta/) — HTTPS化でハマったときの記録
+- [Nginxの設定ファイルを1行ずつ読み解く](/posts/nginx-config-yomitoku/) — ポート80と443を設定しているNginxの設定ファイル

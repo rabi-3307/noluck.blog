@@ -106,3 +106,8 @@ sudo chmod -R 755 /var/www/yourlog && sudo systemctl restart nginx
 | ページが真っ白、または403と表示される | ステップ4をもう一度やり直す |
 
 うまくいかない場合は、黒い画面に表示された文字(英語の部分)をそのままコピーして、AIへ質問してください。**ただし、IPアドレスやパスワードが表示されている部分は、質問する前に隠すか消してください。**
+
+## あわせて読みたい
+
+- [記事を書いてから公開するまでの手順(PowerShellでの操作の流れ)](/posts/hugo-publish-flow/) — 各手順が何をしているのか知りたい方へ
+- [【番外編2】GitHub連携編 — git pushだけで公開まで自動化する](/posts/series-ex2-github/) — この手順をgit pushだけに自動化する方法

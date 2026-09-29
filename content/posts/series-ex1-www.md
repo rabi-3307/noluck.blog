@@ -100,6 +100,10 @@ cp /root/yourlog.bak /etc/nginx/sites-available/yourlog
 
 Googleが評価を1つにまとめるまで、数週間かかることがあります。
 
+## あわせて読みたい
+
+- [Nginxの設定ファイルを1行ずつ読み解く](/posts/nginx-config-yomitoku/) — Nginxの設定ファイルの読み方
+
 ## 次の記事
 
 [【番外編2】GitHub連携編 — git pushだけで公開まで自動化する](/posts/series-ex2-github/)

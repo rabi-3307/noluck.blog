@@ -99,6 +99,11 @@ VSCodeで、右下の表示が「UTF-8」になっているか確認してくだ
 
 操作だけまとめた版は [記事を公開する手順(操作だけ)](/posts/kiji-koukai-saitan/)、コマンド一覧は [Hugoコマンドリファレンス](/posts/hugo-command-reference/) にあります。
 
+## あわせて読みたい
+
+- [記事を書いてから公開するまでの手順(PowerShellでの操作の流れ)](/posts/hugo-publish-flow/) — 公開の流れと403エラーの詳しい記録
+- [SCPって何をしているコマンドなのか(SSHとの関係)](/posts/scp-to-ssh/) — scpコマンドが何をしているのか
+
 ## 次の記事
 
 [【第8回】Google Search Console編 — Googleにサイトを登録する](/posts/series-08-search-console/)

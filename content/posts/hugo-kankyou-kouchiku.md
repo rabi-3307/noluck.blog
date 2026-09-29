@@ -89,3 +89,9 @@ Press Ctrl+C to stop
 | PowerShellを開き直すたびに迷子になる | ターミナルの現在地は毎回リセットされる | フォルダを開いてからターミナルを起動すると手間が減る |
 
 環境構築は地味ですが、ここで「今どこのフォルダにいるか」を意識する習慣がついたのは、この後のVPS作業(SSHでの接続先を意識する場面)にもそのまま活きてくる気がしています。
+
+## あわせて読みたい
+
+- [【第5回】環境づくり編 — SSH・ufw・Nginx・Hugoを準備する](/posts/series-05-kankyou/) — サーバー側の準備も含めた環境づくりの手順
+- [Hugoコマンド逆引き表(意味と使うタイミングまとめ)](/posts/hugo-command-reference/) — よく使うHugoコマンドの一覧
+- [文字コード沼:UTF-8・BOM・Shift-JISは何が違うのか](/posts/character-encoding-numa/) — Windowsで起きやすい文字化けの仕組み

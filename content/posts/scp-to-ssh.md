@@ -57,3 +57,9 @@ sudo chmod -R 755 /var/www/yourlog
 ## 学び
 
 普段何気なく実行していた`scp`コマンドですが、分解してみると「SSHの仕組みを流用した、ファイル転送専用のコマンド」というシンプルな正体でした。仕組みを理解してからは、権限エラーが起きる理由にも納得感を持って対応できるようになりました。
+
+## あわせて読みたい
+
+- [記事を書いてから公開するまでの手順(PowerShellでの操作の流れ)](/posts/hugo-publish-flow/) — scpを使った公開の流れ全体
+- [ConoHa VPSでSSH接続できずハマった話(セキュリティグループの罠)](/posts/ssh-conoha-hamatta/) — SSHで接続できなかったときの記録
+- [【番外編2】GitHub連携編 — git pushだけで公開まで自動化する](/posts/series-ex2-github/) — 転送を自動化する方法

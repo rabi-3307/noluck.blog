@@ -97,3 +97,9 @@ Analyticsの管理画面から「レポート」→「リアルタイム」を�
 | 全ページ共通のテンプレートに貼る | 記事ページごとに貼る必要はなく、`baseof.html`のような共通部分に1回で済む |
 
 Search Consoleの一件で散々苦労した直後だったので身構えていましたが、Analytics自体の導入は今回は比較的スムーズに終わりました。HTTPS化を先に済ませておいたことが、地味に効いていたのだと思います。
+
+## あわせて読みたい
+
+- [【第9回】Google Analytics編 — 何人来たかを測る](/posts/series-09-analytics/) — 操作の手順だけを順番に知りたい方へ
+- [1つのファイルを直すだけで全ページに反映される仕組み(baseof.htmlとは)](/posts/baseof-shikumi/) — 測定IDを1か所に貼るだけで全ページに入る理由
+- [Google Search Consoleを導入した話(所有権確認とサイトマップ送信でハマった記録)](/posts/search-console-donyu/) — 先に導入したSearch Consoleの記録

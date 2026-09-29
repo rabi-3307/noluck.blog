@@ -64,3 +64,9 @@ public/posts/vps-keiyaku-hamatta/index.html
 - 「本当に反映されているか不安なとき」は、生成された複数のページのHTMLを見比べて確認するのが確実
 
 ツールの一般的な説明書きと、自分が使っている仕組みの前提が違うことに気づかず混乱する、というのは今後もありそうなので、「この操作は本当に1回で済むのか、それとも繰り返す必要があるのか」を都度立ち止まって考える癖をつけたいと思います。
+
+## あわせて読みたい
+
+- [【最短手順】AdSenseコードの貼り方](/posts/adsense-saitan/) — この仕組みを使ってAdSenseのコードを貼る手順
+- [Google Analytics(GA4)を導入した話(測定IDをHugoに組み込む)](/posts/analytics-donyu/) — 同じ仕組みでGoogle Analyticsを入れた記録
+- [【第7回】記事の作成編 — Hugoで書いて公開するまで](/posts/series-07-kiji/) — Hugoで記事を書いて公開する手順

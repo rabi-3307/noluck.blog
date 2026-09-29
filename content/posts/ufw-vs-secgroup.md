@@ -66,3 +66,9 @@ sudo ufw status verbose
 クラウド側は、ConoHaの管理画面の「セキュリティグループ」「ネットワーク情報」から確認します。
 
 トラブルが起きたときは、**この2箇所を両方確認する**、というのを癖にしておくと、原因の切り分けが早くなると思います。
+
+## あわせて読みたい
+
+- [ConoHa VPSでSSH接続できずハマった話(セキュリティグループの罠)](/posts/ssh-conoha-hamatta/) — セキュリティグループが原因でSSHできなかった記録
+- [【第3回】ConoHa編 — VPSを契約してサーバーを起動する](/posts/series-03-conoha/) — セキュリティグループを設定する手順
+- [【第5回】環境づくり編 — SSH・ufw・Nginx・Hugoを準備する](/posts/series-05-kankyou/) — ufwを設定する手順

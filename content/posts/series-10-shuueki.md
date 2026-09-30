@@ -39,6 +39,10 @@ google.com, pub-xxxxxxxxxxxxxxxx, DIRECT, f08c47fec0942fa0
 
 審査結果はメールで届きます。数日〜数週間かかります。
 
+審査をリクエストすると、AdSenseの「サイト」画面はこうなります。
+
+![AdSenseのサイト画面](/images/posts/adsense-site-status.png "①「準備中」は審査中という意味です。②ads.txtが「承認済み」なら、ads.txtは正しく置けています")
+
 ### A8.net
 
 1. A8.netを開き、「メディア会員登録(無料)」を押す

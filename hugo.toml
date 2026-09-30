@@ -88,3 +88,6 @@ helpURL = "/categories/troubleshooting/"
   name = "振り返り"
   url = "/categories/diary/"
   weight = 4
+
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false

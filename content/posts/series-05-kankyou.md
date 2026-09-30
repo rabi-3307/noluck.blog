@@ -30,6 +30,8 @@ ssh root@xxx.xxx.xxx.xxx
 
 初回は `Are you sure you want to continue connecting` と聞かれるので `yes`。続けてrootパスワードを入力します(入力中は何も表示されませんが、打てています)。
 
+![初めてSSHで接続したときの画面](/images/posts/ssh-first-login.png "初めて接続したときの画面(IPアドレスなどは隠しています)。①で yes と打ち、②でrootパスワードを入力します。③の Welcome to Ubuntu が出れば接続できています")
+
 ### 2. サーバーを最新にする
 
 ここからはサーバーの中で打ちます。

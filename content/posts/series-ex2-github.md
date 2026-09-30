@@ -141,7 +141,7 @@ git push
 2. 一番上の実行に緑のチェックが付けば成功
 3. 自分のサイトを開き、変更が反映されているか確認する
 
-![GitHub Actionsの画面](/images/posts/github-actions-success.png "Actionsタブ。①のように緑のチェックが付いていれば、公開まで自動で終わっています")
+![GitHub Actionsの画面](/images/posts/github-actions-success.png "①「Actions」タブを開き、②のように緑のチェックが付いていれば、公開まで自動で終わっています")
 
 これ以降は、記事を書いたら `git add .` → `git commit -m "メッセージ"` → `git push` の3つだけで公開されます。VSCodeの「ソース管理」ボタンからでも同じことができます。
 

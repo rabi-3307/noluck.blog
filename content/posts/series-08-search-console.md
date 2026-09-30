@@ -36,7 +36,7 @@ Hugoはサイトマップ(記事の一覧表)を自動で作っています。
 2. `sitemap.xml` と入力して「送信」
 3. ステータスが「成功しました」になればOK
 
-![Search Consoleのサイトマップの画面](/images/posts/search-console-sitemap.png "①左メニューの「サイトマップ」を開き、下の表で②が「成功しました」になっていれば完了です")
+![Search Consoleのサイトマップの画面](/images/posts/search-console-sitemap.png "左メニューの「サイトマップ」を開き、下の表で①が「成功しました」になっていれば完了です")
 
 ### 4. トップページの登録をお願いする
 

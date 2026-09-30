@@ -22,7 +22,7 @@ categories = ["beginners"]
 | rootパスワード | 自分で決める(パスワード管理アプリに保存) |
 | SSH Key | 今は「使用しない」でOK(第5回で設定) |
 
-![ConoHaのサーバー追加画面](/images/posts/conoha-server-add.png "サーバー追加の画面。①VPS、②Ubuntu 24.04、③料金タイプ(最初は時間課金)、④プラン1GBを選びます。右上の「追加」は、セキュリティグループを設定してから押します")
+![ConoHaのサーバー追加画面](/images/posts/conoha-server-add.png "サーバー追加の画面。①VPS、②Ubuntu 24.04、③料金タイプ(最初は時間課金)、④プラン1GBを選びます。「追加」は、このあと手順5でセキュリティグループを設定してから押します")
 
 5. セキュリティグループで、`default` に加えて `IPv4v6-SSH` と `IPv4v6-Web` を追加する
 6. 「追加」を押す

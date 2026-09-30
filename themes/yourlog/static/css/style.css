@@ -593,6 +593,11 @@ a {
   border-radius: 8px;
 }
 
+.post-figure a {
+  display: block;
+  cursor: zoom-in;
+}
+
 .post-figure figcaption {
   font-size: 13px;
   color: var(--text-secondary);

@@ -91,3 +91,6 @@ helpURL = "/categories/troubleshooting/"
 
 [markup.goldmark.parser]
   wrapStandAloneImageWithinParagraph = false
+
+[markup.goldmark.renderer]
+  unsafe = true

@@ -3,7 +3,7 @@
 <article class="post">
   <p class="eyebrow">{{ .Section }}</p>
   <h1 class="post-title">{{ .Title }}</h1>
-  <time class="mono post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+  <time class="mono post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>{{ if ne (.Lastmod.Format "2006-01-02") (.Date.Format "2006-01-02") }}<span class="mono post-date post-updated">(更新 <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006.01.02" }}</time>)</span>{{ end }}
   {{ if .Params.pr }}
   <p class="pr-notice"><span class="pr-badge">PR</span>この記事には広告(アフィリエイトリンク)が含まれています。</p>
   {{ end }}

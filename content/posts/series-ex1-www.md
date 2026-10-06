@@ -102,7 +102,7 @@ Googleが評価を1つにまとめるまで、数週間かかることがあり�
 
 ## あわせて読みたい
 
-- [Nginxの設定ファイルを1行ずつ読み解く](/posts/nginx-config-yomitoku/) — Nginxの設定ファイルの読み方
+- [【第5回】環境づくり編 — SSH・ufw・Nginx・Hugoを準備する](/posts/series-05-kankyou/) — Nginxの設定ファイルを1行ずつ読む解説つき
 
 ## 次の記事
 

@@ -1,7 +1,8 @@
 +++
 title = "【番外編2】GitHub連携編 — git pushだけで公開まで自動化する"
-description = "GitHub Actionsを使って、git pushするだけでHugoのビルドからVPSへの公開まで自動で終わるようにする手順です。自動デプロイ専用の鍵の作り方と、GitHubへの登録方法も解説します。"
+description = "GitHub Actionsを使って、git pushするだけでHugoのビルドからVPSへの公開まで自動で終わるようにする手順です。自動デプロイ専用の鍵の作り方、GitHubへの登録方法、実際に起きた権限トラブルの防ぎ方も解説します。"
 date = 2026-09-25T09:12:00+09:00
+lastmod = 2026-10-06T10:00:00+09:00
 categories = ["beginners"]
 +++
 
@@ -13,7 +14,7 @@ categories = ["beginners"]
 |---|---|---|
 | ビルド | `hugo` を打つ | 自動 |
 | サーバーへ転送 | `scp` を打つ | 自動 |
-| 権限を直して再起動 | `ssh` で打つ | 自動 |
+| 権限を直して反映 | `ssh` で打つ | 自動 |
 | 自分がやること | 上の3つ | `git push` だけ |
 
 この仕組みをCI/CDと呼びます。今回はGitHub Actionsを使います。
@@ -29,12 +30,17 @@ categories = ["beginners"]
 
 ### 2. 手元のサイトをGitHubに上げる
 
-サイトのフォルダ(`hugo.toml` がある場所)で、まず `.gitignore` というファイルを作り、次の2行を書いて保存します。`public` はGitHub側で作るので上げません。
+サイトのフォルダ(`hugo.toml` がある場所)で、まず `.gitignore` というファイルを作り、次の内容を書いて保存します。ここに書いたものはGitHubに上がりません。
 
 ```
 public/
 resources/
+.hugo_build.lock
+*.key
+github_actions_key*
 ```
+
+`public` と `resources` はGitHub側で作り直すので上げません。下の2行は、**鍵のファイルを間違って上げないため**の保険です。筆者は鍵をサイトのフォルダに作ってしまい、気づかずにGitHubに上げていました。→ [自動デプロイ用の秘密鍵をGitHubに上げてしまったので、鍵を作り直した話](/posts/himitsukagi-github/)
 
 続けてPowerShellで打ちます。
 
@@ -57,6 +63,8 @@ git push -u origin main
 ssh-keygen -t ed25519 -f $env:USERPROFILE\.ssh\github_actions_key
 ```
 
+`-f` のあとは、必ず `$env:USERPROFILE\.ssh\` から始まる場所にしてください。`-f github_actions_key` のようにファイル名だけにすると、**今いるフォルダ(=サイトのフォルダ)に鍵ができて**、GitHubに上がってしまう原因になります。
+
 公開鍵をサーバーに登録します。
 
 ```
@@ -73,11 +81,13 @@ type $env:USERPROFILE\.ssh\github_actions_key.pub | ssh root@xxx.xxx.xxx.xxx "ca
 | `SSH_PRIVATE_KEY` | 秘密鍵の中身すべて |
 | `SERVER_IP` | サーバーのIPアドレス |
 
-秘密鍵の中身は次のコマンドで表示できます。`-----BEGIN` から `-----END ...-----` までの全部をコピーします。
+秘密鍵の中身は次のコマンドで表示できます。`-----BEGIN` から `-----END ...-----` までの全部をコピーして、Secretの入力欄に貼ります。
 
 ```
 Get-Content $env:USERPROFILE\.ssh\github_actions_key
 ```
+
+Secretに入れた値は、登録したあとは自分でも見られません。表示した秘密鍵は、ほかのどこにも貼らないでください。
 
 ### 5. 自動化の手順書を作る
 
@@ -116,16 +126,28 @@ jobs:
           overwrite: true
           strip_components: 1
 
-      - name: Fix permissions and restart Nginx
+      - name: Fix permissions and reload Nginx
+        if: always()
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_IP }}
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            chmod -R 755 /var/www/yourlog
-            systemctl restart nginx
+            chown -R root:root /var/www/yourlog
+            find /var/www/yourlog -type d -exec chmod 755 {} +
+            find /var/www/yourlog -type f -exec chmod 644 {} +
+            systemctl reload nginx
 ```
+
+最後のステップは、送ったファイルの持ち主と読み取り権限を直して、Nginxに反映する部分です。
+
+- `chown -R root:root` … 持ち主をサーバーの `root` にそろえる
+- `find ... -type d ... chmod 755` … フォルダは「誰でも中に入れて読める」
+- `find ... -type f ... chmod 644` … ファイルは「誰でも読める、書けるのは持ち主だけ」
+- `if: always()` … 前のステップが失敗しても、このステップは必ず実行する
+
+最初はここを `chmod -R 755` の1行にしていましたが、それだとサイトのデザインが丸ごと消えるトラブルが起きました。理由は下の注意点に書いています。
 
 ### 6. pushして動かす
 
@@ -146,6 +168,10 @@ git push
 これ以降は、記事を書いたら `git add .` → `git commit -m "メッセージ"` → `git push` の3つだけで公開されます。VSCodeの「ソース管理」ボタンからでも同じことができます。
 
 ## つまずきやすい注意点
+
+**pushしたのにサイトが変わらない、デザインが崩れる**
+
+筆者が一番ハマったところです。Actionsで送ったフォルダが「持ち主しか読めない」状態になっていて、NginxがCSSを読めず、サイトが文字だけの画面になりました。しかも、転送のステップが失敗扱いになると、その後ろの「権限を直すステップ」は実行されません。上の `deploy.yml` の最後のステップは、この経験から直した形です。くわしくは [CSSが404になった原因はフォルダの権限だった](/posts/css-404-permission/) へ。
 
 **YAMLはスペース1つのずれで動かない**
 
@@ -169,16 +195,20 @@ cmdkey /delete:git:https://github.com
 
 VSCodeを使う場合は、左下の人型アイコンからVSCode側のGitHubアカウントも別に切り替えてください。コマンドとVSCodeは別々にログイン情報を持っています。
 
+**`no changes added to commit` と出る**
+
+`git add .` を打たずに `git commit` しています。変更したファイルは、`add` してから `commit` します。
+
 **秘密鍵をリポジトリに入れない**
 
-秘密鍵はGitHubのSecretsに登録するだけです。サイトのフォルダにコピーしたり、コミットしたりしないでください。
+秘密鍵はGitHubのSecretsに登録するだけです。サイトのフォルダにコピーしたり、コミットしたりしないでください。上げてしまったら、ファイルを消すだけでは足りません。鍵を作り直してください。
 
 ## あわせて読みたい
 
-- [記事を書いてから公開するまでの手順(PowerShellでの操作の流れ)](/posts/hugo-publish-flow/) — 自動化する前の、手動での公開の流れ
+- [【第7回】記事の作成編 — Hugoで書いて公開するまで](/posts/series-07-kiji/) — 自動化する前の、手動での公開の流れ
 
 ## シリーズはここまで
 
 計画からサーバー構築、公開、収益化、自動化まで、このブログでやったことはすべてこのシリーズに入っています。最初から読み直す場合はこちらです。
 
-[【第1回】計画編 — WordPressか自作VPSか、最初に決めること](/posts/series-01-keikaku/)
+[【第1回】計画編 — WordPressか自作VPSか、費用と手間を比べて決める](/posts/series-01-keikaku/)

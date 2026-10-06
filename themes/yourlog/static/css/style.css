@@ -656,3 +656,7 @@ a {
   display: inline;
   border: 0;
 }
+
+.post-updated {
+  margin-left: 8px;
+}

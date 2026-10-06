@@ -4,7 +4,7 @@ description = "Windowsのメモ帳でhugo.tomlを1行直しただけで、日本
 date = 2026-09-06
 lastmod = 2026-10-06T10:00:00+09:00
 type = "posts"
-categories = ["troubleshooting"]
+categories = ["troubleshooting", "guide"]
 tags = ["Hugo", "文字コード", "UTF-8", "文字化け", "トラブルシューティング"]
 aliases = ["/posts/baseurl-https-hamatta/"]
 +++

@@ -3,7 +3,7 @@ title = "【第5回】環境づくり編 — SSH・ufw・Nginx・Hugoを準備�
 description = "VPSにSSHで入り、サーバーの更新、Nginxのインストール、ufwの設定、鍵認証への切り替えまでを行います。Nginxの設定ファイルを1行ずつ読み解き、実際にハマった落とし穴も解説します。"
 date = 2026-09-25T09:05:00+09:00
 lastmod = 2026-10-06T10:00:00+09:00
-categories = ["beginners"]
+categories = ["beginners", "guide"]
 aliases = ["/posts/nginx-config-yomitoku/"]
 +++
 

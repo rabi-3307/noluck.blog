@@ -3,7 +3,7 @@ title = "【第1回】計画編 — WordPressか自作VPSか、費用と手間�
 description = "ブログを作る前に決める4つのこと(目的・方式・サーバー・ドメイン)を順番に解説します。実際に自作VPSでブログを作った筆者が、かかった費用と手間、WordPressとの違いを正直に比べました。"
 date = 2026-09-25T09:01:00+09:00
 lastmod = 2026-10-06T10:00:00+09:00
-categories = ["beginners"]
+categories = ["beginners", "guide"]
 aliases = ["/posts/vps-vs-rental/", "/posts/static-vs-wordpress-unyou/", "/posts/cost-effort-hikaku/"]
 +++
 

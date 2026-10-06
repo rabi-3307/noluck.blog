@@ -70,6 +70,11 @@ helpURL = "/categories/troubleshooting/"
     { label = "番外編2 自動で公開", url = "/posts/series-ex2-github/" },
   ]
 [[menus.main]]
+  name = "技術解説"
+  url = "/categories/guide/"
+  weight = 1
+
+[[menus.main]]
   name = "トラブル対応"
   url = "/categories/troubleshooting/"
   weight = 2

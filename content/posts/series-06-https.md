@@ -3,7 +3,7 @@ title = "【第6回】HTTPS編 — 無料の証明書で鍵マークを付ける
 description = "Let's EncryptとCertbotを使って、無料でサイトをHTTPS化する手順です。HTTPとHTTPSの違い、証明書の役割、「https://と書いただけ」で接続できなくなった体験もあわせて解説します。"
 date = 2026-09-25T09:06:00+09:00
 lastmod = 2026-10-06T10:00:00+09:00
-categories = ["beginners"]
+categories = ["beginners", "guide"]
 aliases = ["/posts/http-vs-https/"]
 +++
 

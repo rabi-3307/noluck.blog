@@ -3,7 +3,7 @@ title = "git pushしたらデザインが消えた。CSSが404になった原因
 description = "GitHub Actionsで自動公開したあと、サイトのCSSが読み込まれず文字だけの画面になった記録です。キャッシュやNginxの設定を疑って遠回りした末に、フォルダの権限(drwx------)が原因だと突き止め、再発しないようにするまでをまとめました。"
 date = 2026-10-06T09:00:00+09:00
 type = "posts"
-categories = ["troubleshooting"]
+categories = ["troubleshooting", "guide"]
 tags = ["Nginx", "権限", "GitHub Actions", "トラブルシューティング"]
 +++
 

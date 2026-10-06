@@ -3,7 +3,7 @@ title = "【第9回】Google Analytics編 — 何人来たかを測る"
 description = "Google Analytics(GA4)で、サイトに何人来たか、どの記事が読まれているかを測れるようにする手順です。Hugoのbaseof.htmlに1回貼るだけで全ページに入る仕組みと、実際に入れてみて分かった注意点も解説します。"
 date = 2026-09-25T09:09:00+09:00
 lastmod = 2026-10-06T10:00:00+09:00
-categories = ["beginners"]
+categories = ["beginners", "guide"]
 aliases = ["/posts/analytics-donyu/", "/posts/baseof-shikumi/"]
 +++
 

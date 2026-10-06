@@ -4,7 +4,7 @@ description = "ConoHa VPSにSSHで接続できず、原因の切り分けに丸�
 date = 2026-08-28
 lastmod = 2026-10-06T10:00:00+09:00
 type = "posts"
-categories = ["troubleshooting"]
+categories = ["troubleshooting", "guide"]
 tags = ["ConoHa", "SSH", "ufw", "セキュリティグループ", "トラブルシューティング"]
 aliases = ["/posts/ufw-vs-secgroup/"]
 +++

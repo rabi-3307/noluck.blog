@@ -3,7 +3,7 @@ title = "【第7回】記事の作成編 — Hugoで書いて公開するまで"
 description = "Hugoで記事ファイルを作り、VSCodeで書いて、手元で表示を確認し、VPSに公開するまでの手順です。よく使うHugoコマンドの使い分け、scpが何をしているのか、転送のたびに403エラーが出た体験も解説します。"
 date = 2026-09-25T09:07:00+09:00
 lastmod = 2026-10-06T10:00:00+09:00
-categories = ["beginners"]
+categories = ["beginners", "guide"]
 aliases = ["/posts/kiji-koukai-saitan/", "/posts/hugo-publish-flow/", "/posts/scp-to-ssh/", "/posts/hugo-command-reference/"]
 +++
 

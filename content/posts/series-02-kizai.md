@@ -3,7 +3,7 @@ title = "【第2回】機材編 — 必要なPC・ソフトと、これから使
 description = "ブログ作りに必要なPCのスペック、入れておくソフト、作っておくアカウントをまとめました。これから使うHugo・VPS・SSH・Nginxの役割と、Hugoのインストールで実際につまずいたことも解説します。"
 date = 2026-09-25T09:02:00+09:00
 lastmod = 2026-10-06T10:00:00+09:00
-categories = ["beginners"]
+categories = ["beginners", "guide"]
 aliases = ["/posts/hugo-vps-ssh-nginx-kiso/", "/posts/hugo-kankyou-kouchiku/"]
 +++
 

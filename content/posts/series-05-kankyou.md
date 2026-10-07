@@ -179,7 +179,7 @@ ConoHaのセキュリティグループに `IPv4v6-SSH` が付いているか確
 
 今のSSH画面は閉じずに、別のPowerShellで鍵ログインを試してください。失敗したまま止めると入れなくなります。
 
-また、Ubuntu 24.04では `/etc/ssh/sshd_config.d/` の中のファイルにも `PasswordAuthentication yes` が書かれていて、そちらが優先されることがあります。止めたはずなのにパスワードを聞かれる場合はそこを確認してください。
+また、Ubuntu 24.04では `/etc/ssh/sshd_config.d/` の中のファイルにも `PasswordAuthentication yes` が書かれていて、そちらが優先されることがあります。止めたはずなのにパスワードを聞かれる場合はそこを確認してください。設定したあとは、サーバーで `sshd -T | grep passwordauthentication` を打ち、`no` になっているか確かめるのが確実です。筆者はこれを確かめ忘れて、1か月以上 `yes` のままにしていました(→ [VPSのSSHを点検した話](/posts/ssh-tenken/))。
 
 **設定ファイルにコピペすると、文字が勝手に変わることがある**
 

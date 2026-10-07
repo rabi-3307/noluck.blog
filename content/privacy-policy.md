@@ -12,9 +12,13 @@ aliases = ["/posts/privacy-policy/"]
 
 ## 広告について
 
-当サイトでは、第三者配信の広告サービス(Google AdSense)を利用しています。このような広告配信事業者は、ユーザーの興味に応じた商品やサービスの広告を表示するため、当サイトや他サイトへのアクセスに関する情報 —「Cookie」— を使用することがあります。
+当サイトでは、第三者配信の広告サービス(Google AdSense)を利用しています。
 
-Cookieを無効にする方法や、Google AdSenseに関する詳細は[広告 – ポリシーと規約 – Google](https://policies.google.com/technologies/ads?hl=ja)をご覧ください。
+Googleなどの第三者配信事業者は、Cookieを使用して、ユーザーが当サイトや他のウェブサイトに過去にアクセスした際の情報に基づいて広告を配信します。Googleが広告Cookieを使用することにより、ユーザーが当サイトや他のサイトにアクセスした際の情報に基づいて、Googleやそのパートナーが適切な広告を表示できます。
+
+ユーザーは、[広告設定](https://adssettings.google.com/)でパーソナライズ広告を無効にできます。また、[www.aboutads.info](https://www.aboutads.info/)にアクセスすると、パーソナライズ広告に使われる第三者配信事業者のCookieを無効にできます。
+
+Google AdSenseに関する詳細は[広告 – ポリシーと規約 – Google](https://policies.google.com/technologies/ads?hl=ja)をご覧ください。
 
 ## アフィリエイトプログラムについて
 

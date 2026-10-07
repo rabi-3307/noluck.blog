@@ -27,9 +27,11 @@
   gtag('config', 'G-XGFPRTEELF');
 </script>
 
-<!-- Google AdSense -->
+{{ if or .IsHome (and .IsPage (eq .Section "posts")) }}
+<!-- Google AdSense(記事ページとトップページだけ。一覧・タグ・お問い合わせ等には出さない) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4114224902653206"
      crossorigin="anonymous"></script>
+{{ end }}
 </head>
 <body>
 

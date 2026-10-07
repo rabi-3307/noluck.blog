@@ -4,7 +4,7 @@ description = "ブログを作る前に決める4つのこと(目的・方式・
 date = 2026-09-25T09:01:00+09:00
 lastmod = 2026-10-06T10:00:00+09:00
 categories = ["beginners", "guide"]
-aliases = ["/posts/vps-vs-rental/", "/posts/static-vs-wordpress-unyou/", "/posts/cost-effort-hikaku/"]
+aliases = ["/posts/vps-vs-rental/", "/posts/static-vs-wordpress-unyou/", "/posts/cost-effort-hikaku/", "/posts/conoha-vs-xserver/"]
 +++
 
 この記事を読み終えると、ブログを作り始める前に決めておくべき4つのこと(目的・方式・サーバー・ドメイン)が決められるようになります。

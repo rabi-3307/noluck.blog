@@ -4,7 +4,7 @@ description = "VPSにSSHで入り、サーバーの更新、Nginxのインスト
 date = 2026-09-25T09:05:00+09:00
 lastmod = 2026-10-06T10:00:00+09:00
 categories = ["beginners", "guide"]
-aliases = ["/posts/nginx-config-yomitoku/"]
+aliases = ["/posts/nginx-config-yomitoku/", "/posts/ssh-key-auth/"]
 +++
 
 この記事を読み終えると、サーバーにSSHで入れて、ブラウザでNginxのページが表示され、手元のPCでHugoが使える状態になります。

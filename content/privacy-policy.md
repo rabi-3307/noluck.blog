@@ -1,6 +1,7 @@
 +++
 title = "プライバシーポリシー"
 type = "page"
+aliases = ["/posts/privacy-policy/"]
 +++
 
 「root@noluckblog」(以下、「当サイト」といいます)における、個人情報の取り扱いについて以下のとおりお知らせいたします。

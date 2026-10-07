@@ -4,7 +4,7 @@ description = "ブログ作りに必要なPCのスペック、入れておくソ
 date = 2026-09-25T09:02:00+09:00
 lastmod = 2026-10-06T10:00:00+09:00
 categories = ["beginners", "guide"]
-aliases = ["/posts/hugo-vps-ssh-nginx-kiso/", "/posts/hugo-kankyou-kouchiku/"]
+aliases = ["/posts/hugo-vps-ssh-nginx-kiso/", "/posts/hugo-kankyou-kouchiku/", "/posts/hugo-kankyou-kouchiku-2/"]
 +++
 
 この記事を読み終えると、ブログ構築に必要なPC・ソフト・アカウントがすべて揃い、これから使う4つの道具(Hugo・VPS・SSH・Nginx)が何をするものか分かる状態になります。

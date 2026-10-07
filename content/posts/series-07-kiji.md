@@ -4,7 +4,7 @@ description = "Hugoで記事ファイルを作り、VSCodeで書いて、手元�
 date = 2026-09-25T09:07:00+09:00
 lastmod = 2026-10-06T10:00:00+09:00
 categories = ["beginners", "guide"]
-aliases = ["/posts/kiji-koukai-saitan/", "/posts/hugo-publish-flow/", "/posts/scp-to-ssh/", "/posts/hugo-command-reference/"]
+aliases = ["/posts/kiji-koukai-saitan/", "/posts/hugo-publish-flow/", "/posts/scp-to-ssh/", "/posts/hugo-command-reference/", "/posts/hugo-deploy/"]
 +++
 
 この記事を読み終えると、記事を書いて、自分のサイトに公開できるようになります。

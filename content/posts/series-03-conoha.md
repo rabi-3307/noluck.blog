@@ -4,7 +4,7 @@ description = "ConoHa VPSを契約してサーバーを起動するまでの手�
 date = 2026-09-25T09:03:00+09:00
 lastmod = 2026-10-06T10:00:00+09:00
 categories = ["beginners"]
-aliases = ["/posts/vps-keiyaku-hamatta/"]
+aliases = ["/posts/vps-keiyaku-hamatta/", "/posts/vps-first-setup/"]
 +++
 
 この記事を読み終えると、ConoHa VPSでサーバーが起動し、接続先のIPアドレスが分かる状態になります。

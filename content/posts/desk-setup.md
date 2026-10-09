@@ -2,7 +2,7 @@
 title = "ブログ作業に使っているマウスとマウスパッド(Pulsar X2H CrazyLight / ARTISAN 零 SOFT)"
 description = "ゲームや開発、ブログ作業で毎日使っている、Pulsar X2H CrazyLightとARTISAN 零 SOFTを紹介します。ブログ作業だけなら正直オーバースペックですが、軽くて手首が疲れにくいマウスを探している人には向いています。"
 date = 2026-10-02
-draft = false
+draft = true
 pr = true
 categories = ["diary"]
 tags = ["作業環境"]

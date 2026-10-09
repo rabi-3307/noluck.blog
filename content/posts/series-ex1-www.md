@@ -2,6 +2,7 @@
 title = "【番外編1】www統一編 — wwwあり・なしのURLを1つにまとめる"
 description = "wwwありとwwwなしのURLを1つにまとめる手順です。Nginxの設定で自動転送し、canonicalタグを入れて、Googleの評価が2つに分かれるのを防ぎます。"
 date = 2026-09-25T09:11:00+09:00
+lastmod = 2026-10-09T09:00:00+09:00
 categories = ["beginners"]
 +++
 
@@ -77,6 +78,40 @@ curl.exe -I https://www.example.com
 ```
 
 保存して、第7回の手順で公開します。
+
+## 実際に起きたこと:Search Consoleで「重複」と言われた
+
+この設定をする前の9月上旬、このブログは `www` ありでもなしでも、同じページがそのまま表示される状態でした。そのころにGoogleが見に来たページが、後になってSearch Consoleの「ページのインデックス登録」にこう出てきました。
+
+```
+重複しています。ユーザーにより、正規ページとして選択されていません(8ページ)
+```
+
+開いてみると、8ページとも頭に `www.` が付いたURLで、Googleが見に来た日付は9月5日〜8日でした。
+
+```
+https://www.noluckblog.com/posts/…/
+https://www.noluckblog.com/categories/beginners/
+http://www.noluckblog.com/posts/…/
+```
+
+「同じ中身が2つのURLにあるので、Googleが本物を `www` なしの方に決めた」という意味です。本物にしてほしい方が選ばれているので、結果としては正しい状態でした。
+
+念のため、今は `www` ありで開くと転送されるかを確かめました。
+
+```
+curl.exe -I https://www.noluckblog.com/
+HTTP/1.1 301 Moved Permanently
+Location: https://noluckblog.com/
+
+curl.exe -I http://www.noluckblog.com/
+HTTP/1.1 301 Moved Permanently
+Location: https://noluckblog.com/
+```
+
+`https://` でも `http://` でも、`301` で `www` なしに転送されていました。この状態なら、Googleがもう一度見に来たときに「リダイレクトがあるページ」の方に移り、「重複」の数は減っていきます。
+
+一度「修正を検証」を押したときは「失敗しました」になりました。転送の設定をする前の状態で見に来られていたためだと考えています。設定が効いているのを確かめてから、1〜2週間おいて押し直すのがおすすめです。
 
 ## つまずきやすい注意点
 

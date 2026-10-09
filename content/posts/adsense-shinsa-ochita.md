@@ -110,7 +110,7 @@ aliases = ["/posts/kiji-koukai-saitan/", "/posts/hugo-publish-flow/"]
 - Search ConsoleとAnalyticsで、読まれている記事を見て、その記事をさらに厚くする
 - 12月ごろを目安に、もう一度AdSenseに申請する
 
-AdSenseとは別に、A8.netのアフィリエイトは始めています。実際に使っているものだけを紹介する方針です<!-- 再公開したら戻す:(→ [ブログ作業用のマウスとマウスパッド](/posts/desk-setup/)) -->。
+AdSenseとは別に、A8.netのアフィリエイトは始めています。実際に使っているものだけを紹介する方針です(→ [ブログ作業用のマウスとマウスパッド](/posts/desk-setup/))。
 
 再審査の結果が出たら、この記事に追記します。
 

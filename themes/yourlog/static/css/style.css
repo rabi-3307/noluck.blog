@@ -660,3 +660,14 @@ a {
 .post-updated {
   margin-left: 8px;
 }
+
+.post-body .aff-banner {
+  margin: 24px 0 32px;
+  text-align: center;
+}
+
+.post-body .aff-banner img {
+  max-width: 100%;
+  height: auto;
+  border: 0;
+}

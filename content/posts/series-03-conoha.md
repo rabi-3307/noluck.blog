@@ -2,7 +2,8 @@
 title = "【第3回】ConoHa編 — VPSを契約してサーバーを起動する"
 description = "ConoHa VPSを契約してサーバーを起動するまでの手順です。プラン(512MBと1GB)やOS(Ubuntu)の選び方、料金タイプとオプションの決め方を、実際に「まとめトク」で失敗した体験とあわせて解説します。"
 date = 2026-09-25T09:03:00+09:00
-lastmod = 2026-10-06T10:00:00+09:00
+lastmod = 2026-10-10T11:30:00+09:00
+pr = true
 categories = ["beginners"]
 aliases = ["/posts/vps-keiyaku-hamatta/", "/posts/vps-first-setup/"]
 +++
@@ -20,6 +21,10 @@ VPSの会社はいくつもありますが、初めての契約にはConoHa VPS�
 - 一番安いプランが手頃な値段から始められる
 
 ## 操作手順
+
+まず、ConoHa VPSの公式サイトを開きます。時間課金なら、使った時間の分だけの支払いで始められます。
+
+<p class="aff-link"><a href="https://px.a8.net/svt/ejp?a8mat=4BE7SP+GEM0VM+50+4YZJLE" rel="nofollow sponsored noopener" target="_blank">【衝撃価格】VPS512MBプラン！1時間1.3円【ConoHa】</a><img border="0" width="1" height="1" src="https://www10.a8.net/0.gif?a8mat=4BE7SP+GEM0VM+50+4YZJLE" alt=""></p>
 
 1. ConoHaの公式サイトで「今すぐお申し込み」からアカウントを作成する(メールアドレス・パスワード・電話番号の認証)
 2. 支払い方法(クレジットカード)を登録する
@@ -119,6 +124,10 @@ ConoHa VPS 3.0では、サーバーの中の設定とは別に、管理画面の
 **画面の見た目は変わることがある**
 
 ボタンの名前や配置は変更されることがあります。見つからないときは公式のマニュアルを確認してください。料金も変わることがあるので、契約前に公式サイトで最新の金額を確かめてください。
+
+## あわせて読みたい
+
+- [ConoHa VPSを1か月半使ってみた正直レビュー(よかったところ・困ったところ)](/posts/conoha-vps-review/) — 実際に使ってみてどうだったか
 
 ## 次の記事
 

@@ -2,7 +2,8 @@
 title = "【第4回】ドメイン編 — 独自ドメインを取得してサーバーにつなぐ"
 description = "お名前.comで独自ドメインを取得し、DNSのAレコードでVPSにつなぐまでの手順です。.comにした理由、「0円」に付いてくる有料オプション、認証メールが見つからず焦った体験も書いています。"
 date = 2026-09-25T09:04:00+09:00
-lastmod = 2026-10-06T10:00:00+09:00
+lastmod = 2026-10-10T11:30:00+09:00
+pr = true
 categories = ["beginners"]
 aliases = ["/posts/domain-toroku-hamatta/"]
 +++
@@ -33,6 +34,10 @@ aliases = ["/posts/domain-toroku-hamatta/"]
 毎年の料金で見ると `.dev` は `.com` の約2倍です。`.com` は世界で一番知られていて、収益化(広告・アフィリエイト)も考えると、一般の読者になじみがある方が安心だと考えて `.com` にしました。
 
 ## 操作手順
+
+まず、お名前.comの公式サイトを開きます。申し込み画面では、手順2のとおり、付いてくる追加サービスのチェックを外すのを忘れないでください。
+
+<p class="aff-link"><a href="https://px.a8.net/svt/ejp?a8mat=4BCNG7+BRB7W2+50+2HE8HE" rel="nofollow sponsored noopener" target="_blank">■ドメイン取るならお名前.com■</a><img border="0" width="1" height="1" src="https://www15.a8.net/0.gif?a8mat=4BCNG7+BRB7W2+50+2HE8HE" alt=""></p>
 
 1. お名前.comで使いたい名前を検索し、`.com` にチェックを入れる
 2. 申し込み画面で、追加サービスのチェックを外す(「Whois情報公開代行」だけは付けたままにする)

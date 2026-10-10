@@ -2,7 +2,8 @@
 title = "【第1回】計画編 — WordPressか自作VPSか、費用と手間を比べて決める"
 description = "ブログを作る前に決める4つのこと(目的・方式・サーバー・ドメイン)を順番に解説します。実際に自作VPSでブログを作った筆者が、かかった費用と手間、WordPressとの違いを正直に比べました。"
 date = 2026-09-25T09:01:00+09:00
-lastmod = 2026-10-06T10:00:00+09:00
+lastmod = 2026-10-10T11:30:00+09:00
+pr = true
 categories = ["beginners", "guide"]
 aliases = ["/posts/vps-vs-rental/", "/posts/static-vs-wordpress-unyou/", "/posts/cost-effort-hikaku/", "/posts/conoha-vs-xserver/"]
 +++
@@ -77,6 +78,10 @@ VPSを選ぶ場合、日本国内だとConoHa・さくらのVPS・Xserver VPSあ
 
 このブログはConoHa VPSにしました。管理画面が日本語で分かりやすく、初期費用がかからないためです。
 
+最初は時間課金(使った時間の分だけ払う方式)で始めるのがおすすめです。契約の手順は[第3回](/posts/series-03-conoha/)にまとめています。
+
+<p class="aff-link"><a href="https://px.a8.net/svt/ejp?a8mat=4BE7SP+GEM0VM+50+4YZJLE" rel="nofollow sponsored noopener" target="_blank">【衝撃価格】VPS512MBプラン！1時間1.3円【ConoHa】</a><img border="0" width="1" height="1" src="https://www10.a8.net/0.gif?a8mat=4BE7SP+GEM0VM+50+4YZJLE" alt=""></p>
+
 ### 4. ドメインを決める
 
 `.com` を選んでおけば間違いありません。お名前.comなどの登録サービスで取得します。`.com` にした理由は [第4回 ドメイン編](/posts/series-04-domain/) に書いています。
@@ -136,6 +141,10 @@ VPSの契約から、AdSenseの税務情報の設定まで一通り終わった�
 - 「動かない」の原因を自分で切り分けるやり方
 
 これからブログを始める人には、「とにかく早く収益を出したい」ならWordPressを、「壊しながら学びたい」なら自作VPSをすすめます。
+
+WordPressで始めるなら、ConoHaにはWordPress向けのレンタルサーバー「ConoHa WING」もあります。筆者自身は使っていないので、料金やプランは公式サイトで確かめてください。
+
+<p class="aff-link"><a href="https://px.a8.net/svt/ejp?a8mat=4BE7SQ+5YCTU+50+5SIUWY" rel="nofollow sponsored noopener" target="_blank">ConoHa WINGの公式サイトを見る</a><img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4BE7SQ+5YCTU+50+5SIUWY" alt=""></p>
 
 ## つまずきやすい注意点
 
